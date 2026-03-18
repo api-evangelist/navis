@@ -16,4 +16,25 @@ apis:
   - url: https://www.navis.com/
     type: Documentation
   description: >-
-    NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities.
+    NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.
+common:
+- url: https://kaleris.com/
+  type: Portal
+- url: https://kaleris.com/
+  type: Website
+- url: https://kaleris.com/support/
+  type: Support
+- url: https://kaleriscommunity.force.com/
+  type: Support
+- url: https://kaleris.com/resources/
+  type: Blog
+- url: https://kaleris.com/privacy-policy/
+  type: PrivacyPolicy
+- url: https://kaleris.com/terms-and-conditions/
+  type: TermsOfService
+- url: https://trust.kaleris.com/
+  type: Status
+maintainer:
+  name: Kin Lane
+  email: kin@apievangelist.com
+modified: '2026-03-18'
