@@ -1,0 +1,19 @@
+aid: navis
+url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/apis.yml
+apis:
+- aid: navis:navis-api
+  name: NAVIS N4 Terminal Operating System API
+  tags:
+  - Maritime
+  - Port
+  - Terminal
+  - Container
+  - SOAP
+  image: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/image.png
+  humanURL: https://www.navis.com/
+  baseURL: https://api.navis.example.com
+  properties:
+  - url: https://www.navis.com/
+    type: Documentation
+  description: >-
+    NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities.
