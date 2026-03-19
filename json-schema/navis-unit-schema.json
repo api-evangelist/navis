@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-schema/navis-unit-schema.json",
+  "title": "Navis N4 Container Unit",
+  "description": "A container or cargo unit managed within the Navis N4 Terminal Operating System",
+  "type": "object",
+  "required": ["unitNbr", "category", "freightKind"],
+  "properties": {
+    "unitNbr": {
+      "type": "string",
+      "description": "ISO 6346 container number",
+      "pattern": "^[A-Z]{4}[0-9]{7}$"
+    },
+    "unitId": {
+      "type": "integer",
+      "description": "N4 internal unit identifier"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["IMPORT", "EXPORT", "TRANSSHIP", "EMPTY"],
+      "description": "Container category in terminal operations"
+    },
+    "freightKind": {
+      "type": "string",
+      "enum": ["FCL", "LCL", "MTY"],
+      "description": "Full Container Load, Less Container Load, or Empty"
+    },
+    "equipmentType": {
+      "type": "string",
+      "description": "Equipment type code (CTR, TRL, etc.)"
+    },
+    "equipmentLength": {
+      "type": "integer",
+      "enum": [20, 40, 45, 48, 53],
+      "description": "Container length in feet"
+    },
+    "lineOperator": {
+      "type": "string",
+      "description": "Shipping line SCAC code"
+    },
+    "currentPosition": {
+      "$ref": "#/$defs/YardPosition"
+    },
+    "arrivalVesselVisit": {
+      "type": ["string", "null"],
+      "description": "Visit ID of the vessel that delivered the container"
+    },
+    "departureVesselVisit": {
+      "type": ["string", "null"],
+      "description": "Visit ID of the vessel that will take the container"
+    },
+    "holds": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Hold" }
+    },
+    "hazardous": {
+      "type": "boolean"
+    },
+    "imdgClass": {
+      "type": ["string", "null"],
+      "description": "IMDG dangerous goods class (e.g., 3.0 for flammable liquids)"
+    },
+    "reefer": {
+      "type": "boolean",
+      "description": "Whether the container requires temperature control"
+    },
+    "temperature": {
+      "type": ["number", "null"],
+      "description": "Required setpoint temperature in Celsius for reefer units"
+    },
+    "weight": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Gross weight in kilograms"
+    },
+    "inGateDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when the unit entered the terminal"
+    },
+    "outGateDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when the unit departed the terminal"
+    }
+  },
+  "$defs": {
+    "YardPosition": {
+      "type": "object",
+      "properties": {
+        "locType": {
+          "type": "string",
+          "enum": ["YARD", "VESSEL", "TRUCK", "RAIL", "DOCK", "VESSEL_BUFFER"]
+        },
+        "blockName": { "type": "string" },
+        "bayNbr": { "type": "integer" },
+        "rowNbr": { "type": "integer" },
+        "tierNbr": { "type": "integer" },
+        "slotName": {
+          "type": "string",
+          "description": "Full slot identifier (block-bay-row-tier)"
+        }
+      }
+    },
+    "Hold": {
+      "type": "object",
+      "required": ["holdType", "holdStatus"],
+      "properties": {
+        "holdId": { "type": "string" },
+        "holdType": {
+          "type": "string",
+          "description": "Hold type code (CUSTOMS, LINE, PORT, FREIGHT)"
+        },
+        "holdStatus": {
+          "type": "string",
+          "enum": ["ACTIVE", "RELEASED", "EXPIRED"]
+        },
+        "appliedBy": { "type": "string" },
+        "appliedDate": { "type": "string", "format": "date-time" },
+        "releasedDate": { "type": ["string", "null"], "format": "date-time" },
+        "reason": { "type": "string" }
+      }
+    }
+  }
+}

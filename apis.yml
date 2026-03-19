@@ -15,6 +15,12 @@ apis:
   properties:
   - url: https://www.navis.com/
     type: Documentation
+  - url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/openapi/navis-n4-openapi.yml
+    type: OpenAPI
+  - url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-schema/navis-unit-schema.json
+    type: JSONSchema
+  - url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-ld/navis-context.jsonld
+    type: JSONLDContext
   description: >-
     NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.
 common:
@@ -34,6 +40,12 @@ common:
   type: TermsOfService
 - url: https://trust.kaleris.com/
   type: Status
+- url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/openapi/navis-n4-openapi.yml
+  type: OpenAPI
+- url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-schema/navis-unit-schema.json
+  type: JSONSchema
+- url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-ld/navis-context.jsonld
+  type: JSONLDContext
 maintainer:
   name: Kin Lane
   email: kin@apievangelist.com
