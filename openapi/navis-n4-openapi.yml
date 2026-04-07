@@ -568,13 +568,13 @@ components:
         requestId:
           type: string
 tags:
+  - name: Gate
+    description: Truck gate transactions
+  - name: Holds
+    description: Container hold management
+  - name: Operations
+    description: Work queues and crane operations
   - name: Units
     description: Container and cargo unit tracking
   - name: Vessel Visits
     description: Vessel port call management and planning
-  - name: Gate
-    description: Truck gate transactions
-  - name: Operations
-    description: Work queues and crane operations
-  - name: Holds
-    description: Container hold management
