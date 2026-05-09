@@ -3,11 +3,11 @@
   "feeds": [
     {
       "source": "https://kaleris.com/resources/",
-      "feed_url": "https://kaleris.com/feed/",
-      "saved": 10,
-      "title": "Kaleris"
+      "feed_url": "https://kaleris.com/resources/feed/",
+      "title": "Comments on: Resources",
+      "saved": 0
     }
   ],
   "post_count": 10,
-  "fetched": "2026-05-03T23:32:28Z"
+  "fetched": "2026-05-09T20:17:51Z"
 }
