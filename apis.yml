@@ -61,5 +61,5 @@ common:
     url: https://kaleris.com/privacy-policy/
   - type: TermsOfService
     url: https://kaleris.com/terms-and-conditions/
-  - type: Status
+  - type: StatusPage
     url: https://trust.kaleris.com/
