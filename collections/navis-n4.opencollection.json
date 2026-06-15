@@ -1,0 +1,315 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Navis N4 Terminal Operating System REST API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Units",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search container units",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{terminal}.navis.example.com/apex/n4/api/v2/units",
+            "params": [
+              {
+                "name": "unitNbr",
+                "value": "",
+                "type": "query",
+                "description": "Container number (ISO 6346 format, e.g., MSCU1234567)"
+              },
+              {
+                "name": "equipmentType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "freightKind",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "positionLocType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lineOperator",
+                "value": "",
+                "type": "query",
+                "description": "Shipping line SCAC code"
+              },
+              {
+                "name": "vesselVisit",
+                "value": "",
+                "type": "query",
+                "description": "Vessel visit identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search for container units (TEUs, cargo units) in the terminal yard. Returns current position, status, hazmat class, and associated visit."
+        },
+        {
+          "info": {
+            "name": "Get container unit details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{terminal}.navis.example.com/apex/n4/api/v2/units/:unitId",
+            "params": [
+              {
+                "name": "unitId",
+                "value": "",
+                "type": "path",
+                "description": "N4 unit identifier or ISO 6346 container number"
+              }
+            ]
+          },
+          "docs": "Retrieve full details of a container unit including position, status, holds, and event history."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Vessel Visits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List vessel visits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{terminal}.navis.example.com/apex/n4/api/v2/vessel-visits",
+            "params": [
+              {
+                "name": "vesselName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "arrivalFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "arrivalTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve vessel visits (port calls) including vessel name, Lloyd's number, service, arrival/departure times, and berth assignment."
+        },
+        {
+          "info": {
+            "name": "Get vessel visit details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{terminal}.navis.example.com/apex/n4/api/v2/vessel-visits/:visitId",
+            "params": [
+              {
+                "name": "visitId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve full vessel visit including bay plan, stow plan, and cargo manifest summary."
+        },
+        {
+          "info": {
+            "name": "Get units for a vessel visit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{terminal}.navis.example.com/apex/n4/api/v2/vessel-visits/:visitId/units",
+            "params": [
+              {
+                "name": "visitId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all container units associated with a vessel visit (inbound and outbound)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List gate transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{terminal}.navis.example.com/apex/n4/api/v2/gate-transactions",
+            "params": [
+              {
+                "name": "transactionType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "containerNbr",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "truckId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve in-gate and out-gate transactions. Returns truck visits, container gate-ins, and gate-outs with timestamps and driver information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get active work queues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{terminal}.navis.example.com/apex/n4/api/v2/work-queues",
+            "params": [
+              {
+                "name": "craneId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve current crane and equipment work queues showing pending moves."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Holds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List active holds on units",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{terminal}.navis.example.com/apex/n4/api/v2/holds",
+            "params": [
+              {
+                "name": "unitNbr",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "holdType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve active holds (customs, line, port authority) on container units that prevent release or loading."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
