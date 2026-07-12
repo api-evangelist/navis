@@ -45,6 +45,12 @@ apis:
       - type: JSONLDContext
         url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-ld/navis-context.jsonld
 common:
+  - type: TrustCenter
+    url: security/navis-trust-center.yml
+  - type: DomainSecurity
+    url: security/navis-domain-security.yml
+  - type: Authentication
+    url: authentication/navis-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/navis
   - type: Portal

@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/navis-n4-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/navis-n4-openapi.yml
+- name: APIKey
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  sources:
+  - openapi/navis-n4-openapi.yml
