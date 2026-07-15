@@ -45,6 +45,8 @@ apis:
       - type: JSONLDContext
         url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-ld/navis-context.jsonld
 common:
+  - type: AgenticAccess
+    url: agentic-access/navis-agentic-access.yml
   - type: TrustCenter
     url: security/navis-trust-center.yml
   - type: DomainSecurity
