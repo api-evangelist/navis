@@ -1,0 +1,326 @@
+openapi: 3.1.0
+info:
+  title: Navis N4 Terminal Operating System REST Gate Vessel Visits API
+  description: NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.
+  version: 2.0.0
+  contact:
+    name: Kaleris Support
+    url: https://kaleris.com/support/
+  license:
+    name: Proprietary
+    url: https://kaleris.com/terms-and-conditions/
+servers:
+- url: https://{terminal}.navis.example.com/apex/n4/api/v2
+  variables:
+    terminal:
+      default: yourterminal
+      description: Your N4 terminal instance hostname
+security:
+- BasicAuth: []
+- APIKey: []
+tags:
+- name: Vessel Visits
+  description: Vessel port call management and planning
+paths:
+  /vessel-visits:
+    get:
+      operationId: listVesselVisits
+      summary: List vessel visits
+      description: Retrieve vessel visits (port calls) including vessel name, Lloyd's number, service, arrival/departure times, and berth assignment.
+      tags:
+      - Vessel Visits
+      parameters:
+      - name: vesselName
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - INBOUND
+          - WORKING
+          - COMPLETE
+          - DEPARTED
+      - name: arrivalFrom
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: arrivalTo
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: Vessel visits list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VesselVisitListResponse'
+  /vessel-visits/{visitId}:
+    get:
+      operationId: getVesselVisit
+      summary: Get vessel visit details
+      description: Retrieve full vessel visit including bay plan, stow plan, and cargo manifest summary.
+      tags:
+      - Vessel Visits
+      parameters:
+      - name: visitId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Vessel visit details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VesselVisit'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /vessel-visits/{visitId}/units:
+    get:
+      operationId: getVesselVisitUnits
+      summary: Get units for a vessel visit
+      description: List all container units associated with a vessel visit (inbound and outbound).
+      tags:
+      - Vessel Visits
+      parameters:
+      - name: visitId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        schema:
+          type: string
+          enum:
+          - IMPORT
+          - EXPORT
+          - TRANSSHIP
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 500
+      responses:
+        '200':
+          description: Units for the vessel visit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnitListResponse'
+components:
+  schemas:
+    UnitListResponse:
+      type: object
+      properties:
+        units:
+          type: array
+          items:
+            $ref: '#/components/schemas/Unit'
+        totalCount:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    VesselVisitListResponse:
+      type: object
+      properties:
+        vesselVisits:
+          type: array
+          items:
+            $ref: '#/components/schemas/VesselVisit'
+        totalCount:
+          type: integer
+    Unit:
+      type: object
+      description: A container or cargo unit in the terminal
+      properties:
+        unitNbr:
+          type: string
+          description: ISO 6346 container number
+        unitId:
+          type: integer
+          description: N4 internal unit identifier
+        category:
+          type: string
+          enum:
+          - IMPORT
+          - EXPORT
+          - TRANSSHIP
+          - EMPTY
+        freightKind:
+          type: string
+          enum:
+          - FCL
+          - LCL
+          - MTY
+        equipmentType:
+          type: string
+        equipmentLength:
+          type: integer
+          description: Length in feet (20, 40, 45, 48)
+        lineOperator:
+          type: string
+          description: Shipping line SCAC code
+        currentPosition:
+          $ref: '#/components/schemas/YardPosition'
+        arrivalVesselVisit:
+          type: string
+        departureVesselVisit:
+          type: string
+        holds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hold'
+        hazardous:
+          type: boolean
+        imdgClass:
+          type: string
+          description: IMDG hazardous goods class
+        reefer:
+          type: boolean
+        temperature:
+          type: number
+          description: Required temperature for reefer units (Celsius)
+        weight:
+          type: number
+          description: Gross weight in kg
+        inGateDate:
+          type: string
+          format: date-time
+        outGateDate:
+          type: string
+          format: date-time
+    YardPosition:
+      type: object
+      properties:
+        locType:
+          type: string
+          enum:
+          - YARD
+          - VESSEL
+          - TRUCK
+          - RAIL
+          - DOCK
+          - VESSEL_BUFFER
+        blockName:
+          type: string
+        bayNbr:
+          type: integer
+        rowNbr:
+          type: integer
+        tierNbr:
+          type: integer
+        slotName:
+          type: string
+          description: Full slot identifier (e.g., A01-01-01)
+    Hold:
+      type: object
+      properties:
+        holdId:
+          type: string
+        holdType:
+          type: string
+          description: Type of hold (CUSTOMS, LINE, PORT, FREIGHT, etc.)
+        holdStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - RELEASED
+          - EXPIRED
+        appliedBy:
+          type: string
+        appliedDate:
+          type: string
+          format: date-time
+        releasedDate:
+          type: string
+          format: date-time
+        reason:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        requestId:
+          type: string
+    VesselVisit:
+      type: object
+      properties:
+        visitId:
+          type: string
+        vesselName:
+          type: string
+        vesselLloyd:
+          type: string
+          description: Lloyd's Register vessel number
+        mmsi:
+          type: string
+        imo:
+          type: string
+        lineOperator:
+          type: string
+        service:
+          type: string
+          description: Shipping service / string code
+        berth:
+          type: string
+        status:
+          type: string
+          enum:
+          - INBOUND
+          - WORKING
+          - COMPLETE
+          - DEPARTED
+        eta:
+          type: string
+          format: date-time
+        ata:
+          type: string
+          format: date-time
+        etd:
+          type: string
+          format: date-time
+        atd:
+          type: string
+          format: date-time
+        plannedMoves:
+          type: integer
+        completedMoves:
+          type: integer
+        remainingMoves:
+          type: integer
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    APIKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+externalDocs:
+  description: Kaleris N4 Documentation
+  url: https://kaleris.com/

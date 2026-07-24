@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: Navis N4 Terminal Operating System REST Gate API
+  description: NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.
+  version: 2.0.0
+  contact:
+    name: Kaleris Support
+    url: https://kaleris.com/support/
+  license:
+    name: Proprietary
+    url: https://kaleris.com/terms-and-conditions/
+servers:
+- url: https://{terminal}.navis.example.com/apex/n4/api/v2
+  variables:
+    terminal:
+      default: yourterminal
+      description: Your N4 terminal instance hostname
+security:
+- BasicAuth: []
+- APIKey: []
+tags:
+- name: Gate
+  description: Truck gate transactions
+paths:
+  /gate-transactions:
+    get:
+      operationId: listGateTransactions
+      summary: List gate transactions
+      description: Retrieve in-gate and out-gate transactions. Returns truck visits, container gate-ins, and gate-outs with timestamps and driver information.
+      tags:
+      - Gate
+      parameters:
+      - name: transactionType
+        in: query
+        schema:
+          type: string
+          enum:
+          - IN_GATE
+          - OUT_GATE
+          - TROUBLE
+      - name: containerNbr
+        in: query
+        schema:
+          type: string
+      - name: truckId
+        in: query
+        schema:
+          type: string
+      - name: fromDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: toDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: Gate transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GateTransactionListResponse'
+components:
+  schemas:
+    GateTransactionListResponse:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/GateTransaction'
+        totalCount:
+          type: integer
+    GateTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        transactionType:
+          type: string
+          enum:
+          - IN_GATE
+          - OUT_GATE
+          - TROUBLE
+        containerNbr:
+          type: string
+        truckId:
+          type: string
+        driverLicense:
+          type: string
+        transactionTime:
+          type: string
+          format: date-time
+        laneId:
+          type: string
+        appointmentNbr:
+          type: string
+        lineOperator:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    APIKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+externalDocs:
+  description: Kaleris N4 Documentation
+  url: https://kaleris.com/

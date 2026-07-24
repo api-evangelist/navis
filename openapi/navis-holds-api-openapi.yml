@@ -1,0 +1,98 @@
+openapi: 3.1.0
+info:
+  title: Navis N4 Terminal Operating System REST Gate Holds API
+  description: NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.
+  version: 2.0.0
+  contact:
+    name: Kaleris Support
+    url: https://kaleris.com/support/
+  license:
+    name: Proprietary
+    url: https://kaleris.com/terms-and-conditions/
+servers:
+- url: https://{terminal}.navis.example.com/apex/n4/api/v2
+  variables:
+    terminal:
+      default: yourterminal
+      description: Your N4 terminal instance hostname
+security:
+- BasicAuth: []
+- APIKey: []
+tags:
+- name: Holds
+  description: Container hold management
+paths:
+  /holds:
+    get:
+      operationId: listHolds
+      summary: List active holds on units
+      description: Retrieve active holds (customs, line, port authority) on container units that prevent release or loading.
+      tags:
+      - Holds
+      parameters:
+      - name: unitNbr
+        in: query
+        schema:
+          type: string
+      - name: holdType
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: Active holds
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HoldListResponse'
+components:
+  schemas:
+    HoldListResponse:
+      type: object
+      properties:
+        holds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hold'
+        totalCount:
+          type: integer
+    Hold:
+      type: object
+      properties:
+        holdId:
+          type: string
+        holdType:
+          type: string
+          description: Type of hold (CUSTOMS, LINE, PORT, FREIGHT, etc.)
+        holdStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - RELEASED
+          - EXPIRED
+        appliedBy:
+          type: string
+        appliedDate:
+          type: string
+          format: date-time
+        releasedDate:
+          type: string
+          format: date-time
+        reason:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    APIKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+externalDocs:
+  description: Kaleris N4 Documentation
+  url: https://kaleris.com/

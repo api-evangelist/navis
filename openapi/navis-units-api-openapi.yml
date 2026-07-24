@@ -1,0 +1,281 @@
+openapi: 3.1.0
+info:
+  title: Navis N4 Terminal Operating System REST Gate Units API
+  description: NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.
+  version: 2.0.0
+  contact:
+    name: Kaleris Support
+    url: https://kaleris.com/support/
+  license:
+    name: Proprietary
+    url: https://kaleris.com/terms-and-conditions/
+servers:
+- url: https://{terminal}.navis.example.com/apex/n4/api/v2
+  variables:
+    terminal:
+      default: yourterminal
+      description: Your N4 terminal instance hostname
+security:
+- BasicAuth: []
+- APIKey: []
+tags:
+- name: Units
+  description: Container and cargo unit tracking
+paths:
+  /units:
+    get:
+      operationId: searchUnits
+      summary: Search container units
+      description: Search for container units (TEUs, cargo units) in the terminal yard. Returns current position, status, hazmat class, and associated visit.
+      tags:
+      - Units
+      parameters:
+      - name: unitNbr
+        in: query
+        schema:
+          type: string
+        description: Container number (ISO 6346 format, e.g., MSCU1234567)
+      - name: equipmentType
+        in: query
+        schema:
+          type: string
+          enum:
+          - CTR
+          - TRL
+          - GENSET
+          - CHASSIS
+      - name: category
+        in: query
+        schema:
+          type: string
+          enum:
+          - IMPORT
+          - EXPORT
+          - TRANSSHIP
+          - EMPTY
+      - name: freightKind
+        in: query
+        schema:
+          type: string
+          enum:
+          - FCL
+          - LCL
+          - MTY
+      - name: positionLocType
+        in: query
+        schema:
+          type: string
+          enum:
+          - YARD
+          - VESSEL
+          - TRUCK
+          - RAIL
+          - DOCK
+      - name: lineOperator
+        in: query
+        schema:
+          type: string
+        description: Shipping line SCAC code
+      - name: vesselVisit
+        in: query
+        schema:
+          type: string
+        description: Vessel visit identifier
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+          maximum: 1000
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Container units matching the query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnitListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /units/{unitId}:
+    get:
+      operationId: getUnit
+      summary: Get container unit details
+      description: Retrieve full details of a container unit including position, status, holds, and event history.
+      tags:
+      - Units
+      parameters:
+      - name: unitId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: N4 unit identifier or ISO 6346 container number
+      responses:
+        '200':
+          description: Container unit details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    UnitListResponse:
+      type: object
+      properties:
+        units:
+          type: array
+          items:
+            $ref: '#/components/schemas/Unit'
+        totalCount:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    Unit:
+      type: object
+      description: A container or cargo unit in the terminal
+      properties:
+        unitNbr:
+          type: string
+          description: ISO 6346 container number
+        unitId:
+          type: integer
+          description: N4 internal unit identifier
+        category:
+          type: string
+          enum:
+          - IMPORT
+          - EXPORT
+          - TRANSSHIP
+          - EMPTY
+        freightKind:
+          type: string
+          enum:
+          - FCL
+          - LCL
+          - MTY
+        equipmentType:
+          type: string
+        equipmentLength:
+          type: integer
+          description: Length in feet (20, 40, 45, 48)
+        lineOperator:
+          type: string
+          description: Shipping line SCAC code
+        currentPosition:
+          $ref: '#/components/schemas/YardPosition'
+        arrivalVesselVisit:
+          type: string
+        departureVesselVisit:
+          type: string
+        holds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hold'
+        hazardous:
+          type: boolean
+        imdgClass:
+          type: string
+          description: IMDG hazardous goods class
+        reefer:
+          type: boolean
+        temperature:
+          type: number
+          description: Required temperature for reefer units (Celsius)
+        weight:
+          type: number
+          description: Gross weight in kg
+        inGateDate:
+          type: string
+          format: date-time
+        outGateDate:
+          type: string
+          format: date-time
+    YardPosition:
+      type: object
+      properties:
+        locType:
+          type: string
+          enum:
+          - YARD
+          - VESSEL
+          - TRUCK
+          - RAIL
+          - DOCK
+          - VESSEL_BUFFER
+        blockName:
+          type: string
+        bayNbr:
+          type: integer
+        rowNbr:
+          type: integer
+        tierNbr:
+          type: integer
+        slotName:
+          type: string
+          description: Full slot identifier (e.g., A01-01-01)
+    Hold:
+      type: object
+      properties:
+        holdId:
+          type: string
+        holdType:
+          type: string
+          description: Type of hold (CUSTOMS, LINE, PORT, FREIGHT, etc.)
+        holdStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - RELEASED
+          - EXPIRED
+        appliedBy:
+          type: string
+        appliedDate:
+          type: string
+          format: date-time
+        releasedDate:
+          type: string
+          format: date-time
+        reason:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        requestId:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    APIKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+externalDocs:
+  description: Kaleris N4 Documentation
+  url: https://kaleris.com/

@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: Navis N4 Terminal Operating System REST Gate Operations API
+  description: NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.
+  version: 2.0.0
+  contact:
+    name: Kaleris Support
+    url: https://kaleris.com/support/
+  license:
+    name: Proprietary
+    url: https://kaleris.com/terms-and-conditions/
+servers:
+- url: https://{terminal}.navis.example.com/apex/n4/api/v2
+  variables:
+    terminal:
+      default: yourterminal
+      description: Your N4 terminal instance hostname
+security:
+- BasicAuth: []
+- APIKey: []
+tags:
+- name: Operations
+  description: Work queues and crane operations
+paths:
+  /work-queues:
+    get:
+      operationId: getWorkQueues
+      summary: Get active work queues
+      description: Retrieve current crane and equipment work queues showing pending moves.
+      tags:
+      - Operations
+      parameters:
+      - name: craneId
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - QUEUED
+          - IN_PROGRESS
+          - COMPLETE
+      responses:
+        '200':
+          description: Work queues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkQueueListResponse'
+components:
+  schemas:
+    WorkQueue:
+      type: object
+      properties:
+        workQueueId:
+          type: string
+        craneId:
+          type: string
+        moveType:
+          type: string
+          enum:
+          - LOAD
+          - DISCH
+          - SHIFT
+          - DRAY
+          - RECV
+        fromPosition:
+          type: string
+        toPosition:
+          type: string
+        containerNbr:
+          type: string
+        priority:
+          type: integer
+        status:
+          type: string
+          enum:
+          - QUEUED
+          - IN_PROGRESS
+          - COMPLETE
+        assignedTo:
+          type: string
+          description: Equipment ID assigned to the move
+    WorkQueueListResponse:
+      type: object
+      properties:
+        queues:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkQueue'
+        totalCount:
+          type: integer
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    APIKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+externalDocs:
+  description: Kaleris N4 Documentation
+  url: https://kaleris.com/
