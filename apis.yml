@@ -8,7 +8,20 @@ tags:
   - Container
   - Logistics
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/navis.png
 access: 3rd-Party
 created: '2026-03-18'
 modified: '2026-05-19'
@@ -22,29 +35,94 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 apis:
-  - aid: navis:n4
-    name: NAVIS N4 Terminal Operating System API
-    description: >-
-      NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking,
-      vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal
-      facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.
-    humanURL: https://www.navis.com/
-    tags:
-      - Maritime
-      - Port
-      - Terminal
-      - Container
-      - Logistics
-    properties:
-      - type: Documentation
-        url: https://kaleris.com/
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/openapi/navis-n4-openapi.yml
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-schema/navis-unit-schema.json
-      - type: JSONLDContext
-        url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-ld/navis-context.jsonld
+- aid: navis:navis-gate-api
+  name: Navis (Kaleris) Gate API
+  description: Truck gate transactions
+  humanURL: https://www.navis.com/
+  tags:
+  - Gate
+  properties:
+  - type: OpenAPI
+    url: openapi/navis-gate-api-openapi.yml
+  - type: Documentation
+    url: https://kaleris.com/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-schema/navis-unit-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-ld/navis-context.jsonld
+- aid: navis:navis-holds-api
+  name: Navis (Kaleris) Holds API
+  description: Container hold management
+  humanURL: https://www.navis.com/
+  tags:
+  - Holds
+  properties:
+  - type: OpenAPI
+    url: openapi/navis-holds-api-openapi.yml
+  - type: Documentation
+    url: https://kaleris.com/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-schema/navis-unit-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-ld/navis-context.jsonld
+- aid: navis:navis-operations-api
+  name: Navis (Kaleris) Operations API
+  description: Work queues and crane operations
+  humanURL: https://www.navis.com/
+  tags:
+  - Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/navis-operations-api-openapi.yml
+  - type: Documentation
+    url: https://kaleris.com/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-schema/navis-unit-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-ld/navis-context.jsonld
+- aid: navis:navis-units-api
+  name: Navis (Kaleris) Units API
+  description: Container and cargo unit tracking
+  humanURL: https://www.navis.com/
+  tags:
+  - Units
+  properties:
+  - type: OpenAPI
+    url: openapi/navis-units-api-openapi.yml
+  - type: Documentation
+    url: https://kaleris.com/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-schema/navis-unit-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-ld/navis-context.jsonld
+- aid: navis:navis-vessel-visits-api
+  name: Navis (Kaleris) Vessel Visits API
+  description: Vessel port call management and planning
+  humanURL: https://www.navis.com/
+  tags:
+  - Vessel Visits
+  properties:
+  - type: OpenAPI
+    url: openapi/navis-vessel-visits-api-openapi.yml
+  - type: Documentation
+    url: https://kaleris.com/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-schema/navis-unit-schema.json
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-ld/navis-context.jsonld
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/navis-kaleris/overview
   - type: AgenticAccess
     url: agentic-access/navis-agentic-access.yml
   - type: TrustCenter
