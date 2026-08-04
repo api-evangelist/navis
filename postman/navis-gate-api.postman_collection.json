@@ -1,0 +1,173 @@
+{
+  "info": {
+    "_postman_id": "03817cb1-d20f-476b-93a8-dcdee5619366",
+    "name": "Navis N4 Terminal Operating System REST Gate API",
+    "description": "NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.\n\nContact Support:\n Name: Kaleris Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:14.000Z",
+    "updatedAt": "2026-07-28T02:16:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-03817cb1-d20f-476b-93a8-dcdee5619366"
+  },
+  "item": [
+    {
+      "name": "gate-transactions",
+      "item": [
+        {
+          "name": "List gate transactions",
+          "id": "a8a6cfe8-5688-474a-9bfd-868b2fa2cafd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/gate-transactions?transactionType=TROUBLE&containerNbr=<string>&truckId=<string>&fromDate=<dateTime>&toDate=<dateTime>&limit=100",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "gate-transactions"
+              ],
+              "query": [
+                {
+                  "key": "transactionType",
+                  "value": "TROUBLE"
+                },
+                {
+                  "key": "containerNbr",
+                  "value": "<string>"
+                },
+                {
+                  "key": "truckId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "fromDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "toDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "limit",
+                  "value": "100"
+                }
+              ]
+            },
+            "description": "Retrieve in-gate and out-gate transactions. Returns truck visits, container gate-ins, and gate-outs with timestamps and driver information."
+          },
+          "response": [
+            {
+              "id": "09e0b999-847a-4b36-a434-a14fef22eee2",
+              "name": "Gate transactions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/gate-transactions?transactionType=TROUBLE&containerNbr=<string>&truckId=<string>&fromDate=<dateTime>&toDate=<dateTime>&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "gate-transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "transactionType",
+                      "value": "TROUBLE"
+                    },
+                    {
+                      "key": "containerNbr",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "truckId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"transactions\": [\n    {\n      \"transactionId\": \"<string>\",\n      \"transactionType\": \"IN_GATE\",\n      \"containerNbr\": \"<string>\",\n      \"truckId\": \"<string>\",\n      \"driverLicense\": \"<string>\",\n      \"transactionTime\": \"<dateTime>\",\n      \"laneId\": \"<string>\",\n      \"appointmentNbr\": \"<string>\",\n      \"lineOperator\": \"<string>\"\n    },\n    {\n      \"transactionId\": \"<string>\",\n      \"transactionType\": \"OUT_GATE\",\n      \"containerNbr\": \"<string>\",\n      \"truckId\": \"<string>\",\n      \"driverLicense\": \"<string>\",\n      \"transactionTime\": \"<dateTime>\",\n      \"laneId\": \"<string>\",\n      \"appointmentNbr\": \"<string>\",\n      \"lineOperator\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:16:15.000Z",
+              "updatedAt": "2026-07-28T02:16:15.000Z",
+              "uid": "35240-09e0b999-847a-4b36-a434-a14fef22eee2"
+            }
+          ],
+          "createdAt": "2026-07-28T02:16:15.000Z",
+          "updatedAt": "2026-07-28T02:16:15.000Z",
+          "uid": "35240-a8a6cfe8-5688-474a-9bfd-868b2fa2cafd"
+        }
+      ],
+      "id": "b45d93e0-9afa-410f-be47-5791ec269249",
+      "createdAt": "2026-07-28T02:16:15.000Z",
+      "updatedAt": "2026-07-28T02:16:15.000Z",
+      "uid": "35240-b45d93e0-9afa-410f-be47-5791ec269249"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "terminal",
+      "value": "yourterminal"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{terminal}}.navis.example.com/apex/n4/api/v2"
+    }
+  ]
+}

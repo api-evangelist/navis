@@ -1,0 +1,22 @@
+{
+  "provider": "navis",
+  "sources": [
+    "navis-gate-api-openapi.yml",
+    "navis-holds-api-openapi.yml",
+    "navis-operations-api-openapi.yml",
+    "navis-units-api-openapi.yml",
+    "navis-vessel-visits-api-openapi.yml"
+  ],
+  "outputs": [
+    "navis-gate-api-openapi.yml",
+    "navis-holds-api-openapi.yml",
+    "navis-operations-api-openapi.yml",
+    "navis-units-api-openapi.yml",
+    "navis-vessel-visits-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,429 @@
+{
+  "info": {
+    "_postman_id": "de5b7821-40d9-4f3c-bbb0-a42e1d2dde51",
+    "name": "Navis N4 Terminal Operating System REST Gate Vessel Visits API",
+    "description": "NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.\n\nContact Support:\n Name: Kaleris Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:33.000Z",
+    "updatedAt": "2026-07-28T02:16:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-de5b7821-40d9-4f3c-bbb0-a42e1d2dde51"
+  },
+  "item": [
+    {
+      "name": "vessel-visits",
+      "item": [
+        {
+          "name": "{visitId}",
+          "item": [
+            {
+              "name": "units",
+              "item": [
+                {
+                  "name": "Get units for a vessel visit",
+                  "id": "848e49b1-72ab-4b1b-9997-59ea57734ad0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vessel-visits/:visitId/units?category=EXPORT&limit=500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vessel-visits",
+                        ":visitId",
+                        "units"
+                      ],
+                      "query": [
+                        {
+                          "key": "category",
+                          "value": "EXPORT"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "500"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "36225f2f-37d6-46d7-855c-1fdcc5a655bf",
+                          "key": "visitId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "List all container units associated with a vessel visit (inbound and outbound)."
+                  },
+                  "response": [
+                    {
+                      "id": "0f9215e1-ffd6-4f16-8abb-b83ae00dffa6",
+                      "name": "Units for the vessel visit",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/vessel-visits/:visitId/units?category=EXPORT&limit=500",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vessel-visits",
+                            ":visitId",
+                            "units"
+                          ],
+                          "query": [
+                            {
+                              "key": "category",
+                              "value": "EXPORT"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "500"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "visitId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"units\": [\n    {\n      \"unitNbr\": \"<string>\",\n      \"unitId\": \"<integer>\",\n      \"category\": \"TRANSSHIP\",\n      \"freightKind\": \"MTY\",\n      \"equipmentType\": \"<string>\",\n      \"equipmentLength\": \"<integer>\",\n      \"lineOperator\": \"<string>\",\n      \"currentPosition\": {\n        \"locType\": \"VESSEL\",\n        \"blockName\": \"<string>\",\n        \"bayNbr\": \"<integer>\",\n        \"rowNbr\": \"<integer>\",\n        \"tierNbr\": \"<integer>\",\n        \"slotName\": \"<string>\"\n      },\n      \"arrivalVesselVisit\": \"<string>\",\n      \"departureVesselVisit\": \"<string>\",\n      \"holds\": [\n        {\n          \"holdId\": \"<string>\",\n          \"holdType\": \"<string>\",\n          \"holdStatus\": \"ACTIVE\",\n          \"appliedBy\": \"<string>\",\n          \"appliedDate\": \"<dateTime>\",\n          \"releasedDate\": \"<dateTime>\",\n          \"reason\": \"<string>\"\n        },\n        {\n          \"holdId\": \"<string>\",\n          \"holdType\": \"<string>\",\n          \"holdStatus\": \"RELEASED\",\n          \"appliedBy\": \"<string>\",\n          \"appliedDate\": \"<dateTime>\",\n          \"releasedDate\": \"<dateTime>\",\n          \"reason\": \"<string>\"\n        }\n      ],\n      \"hazardous\": \"<boolean>\",\n      \"imdgClass\": \"<string>\",\n      \"reefer\": \"<boolean>\",\n      \"temperature\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"inGateDate\": \"<dateTime>\",\n      \"outGateDate\": \"<dateTime>\"\n    },\n    {\n      \"unitNbr\": \"<string>\",\n      \"unitId\": \"<integer>\",\n      \"category\": \"IMPORT\",\n      \"freightKind\": \"FCL\",\n      \"equipmentType\": \"<string>\",\n      \"equipmentLength\": \"<integer>\",\n      \"lineOperator\": \"<string>\",\n      \"currentPosition\": {\n        \"locType\": \"TRUCK\",\n        \"blockName\": \"<string>\",\n        \"bayNbr\": \"<integer>\",\n        \"rowNbr\": \"<integer>\",\n        \"tierNbr\": \"<integer>\",\n        \"slotName\": \"<string>\"\n      },\n      \"arrivalVesselVisit\": \"<string>\",\n      \"departureVesselVisit\": \"<string>\",\n      \"holds\": [\n        {\n          \"holdId\": \"<string>\",\n          \"holdType\": \"<string>\",\n          \"holdStatus\": \"ACTIVE\",\n          \"appliedBy\": \"<string>\",\n          \"appliedDate\": \"<dateTime>\",\n          \"releasedDate\": \"<dateTime>\",\n          \"reason\": \"<string>\"\n        },\n        {\n          \"holdId\": \"<string>\",\n          \"holdType\": \"<string>\",\n          \"holdStatus\": \"EXPIRED\",\n          \"appliedBy\": \"<string>\",\n          \"appliedDate\": \"<dateTime>\",\n          \"releasedDate\": \"<dateTime>\",\n          \"reason\": \"<string>\"\n        }\n      ],\n      \"hazardous\": \"<boolean>\",\n      \"imdgClass\": \"<string>\",\n      \"reefer\": \"<boolean>\",\n      \"temperature\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"inGateDate\": \"<dateTime>\",\n      \"outGateDate\": \"<dateTime>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:16:33.000Z",
+                      "updatedAt": "2026-07-28T02:16:33.000Z",
+                      "uid": "35240-0f9215e1-ffd6-4f16-8abb-b83ae00dffa6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:33.000Z",
+                  "updatedAt": "2026-07-28T02:16:33.000Z",
+                  "uid": "35240-848e49b1-72ab-4b1b-9997-59ea57734ad0"
+                }
+              ],
+              "id": "060cc30a-ac58-411c-839e-c3c744ba35ec",
+              "createdAt": "2026-07-28T02:16:33.000Z",
+              "updatedAt": "2026-07-28T02:16:33.000Z",
+              "uid": "35240-060cc30a-ac58-411c-839e-c3c744ba35ec"
+            },
+            {
+              "name": "Get vessel visit details",
+              "id": "82b1eaf6-dbc0-47b6-b8d6-1f6650ba39a0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vessel-visits/:visitId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vessel-visits",
+                    ":visitId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "49ec0e80-2779-47f7-9c97-436be02a6fff",
+                      "key": "visitId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve full vessel visit including bay plan, stow plan, and cargo manifest summary."
+              },
+              "response": [
+                {
+                  "id": "d32e1460-5b56-4c4a-9413-e6b747c69bc0",
+                  "name": "Vessel visit details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vessel-visits/:visitId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vessel-visits",
+                        ":visitId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "visitId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"visitId\": \"<string>\",\n  \"vesselName\": \"<string>\",\n  \"vesselLloyd\": \"<string>\",\n  \"mmsi\": \"<string>\",\n  \"imo\": \"<string>\",\n  \"lineOperator\": \"<string>\",\n  \"service\": \"<string>\",\n  \"berth\": \"<string>\",\n  \"status\": \"DEPARTED\",\n  \"eta\": \"<dateTime>\",\n  \"ata\": \"<dateTime>\",\n  \"etd\": \"<dateTime>\",\n  \"atd\": \"<dateTime>\",\n  \"plannedMoves\": \"<integer>\",\n  \"completedMoves\": \"<integer>\",\n  \"remainingMoves\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:16:33.000Z",
+                  "updatedAt": "2026-07-28T02:16:33.000Z",
+                  "uid": "35240-d32e1460-5b56-4c4a-9413-e6b747c69bc0"
+                },
+                {
+                  "id": "308f056a-e3f1-4d1c-9b0e-cc7fba4148f1",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vessel-visits/:visitId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vessel-visits",
+                        ":visitId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "visitId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<string>\",\n  \"errorMessage\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:33.000Z",
+                  "updatedAt": "2026-07-28T02:16:33.000Z",
+                  "uid": "35240-308f056a-e3f1-4d1c-9b0e-cc7fba4148f1"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:33.000Z",
+              "updatedAt": "2026-07-28T02:16:33.000Z",
+              "uid": "35240-82b1eaf6-dbc0-47b6-b8d6-1f6650ba39a0"
+            }
+          ],
+          "id": "a61ab3bf-c100-4322-b699-8e978033ab32",
+          "createdAt": "2026-07-28T02:16:33.000Z",
+          "updatedAt": "2026-07-28T02:16:33.000Z",
+          "uid": "35240-a61ab3bf-c100-4322-b699-8e978033ab32"
+        },
+        {
+          "name": "List vessel visits",
+          "id": "60d85f11-43da-4e56-9f34-0b63f4ce27c6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/vessel-visits?vesselName=<string>&status=COMPLETE&arrivalFrom=<dateTime>&arrivalTo=<dateTime>&limit=50",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "vessel-visits"
+              ],
+              "query": [
+                {
+                  "key": "vesselName",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "COMPLETE"
+                },
+                {
+                  "key": "arrivalFrom",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "arrivalTo",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "limit",
+                  "value": "50"
+                }
+              ]
+            },
+            "description": "Retrieve vessel visits (port calls) including vessel name, Lloyd's number, service, arrival/departure times, and berth assignment."
+          },
+          "response": [
+            {
+              "id": "cc3d41b7-1b48-4d05-b3fe-15881269b0dd",
+              "name": "Vessel visits list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vessel-visits?vesselName=<string>&status=COMPLETE&arrivalFrom=<dateTime>&arrivalTo=<dateTime>&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vessel-visits"
+                  ],
+                  "query": [
+                    {
+                      "key": "vesselName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "COMPLETE"
+                    },
+                    {
+                      "key": "arrivalFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "arrivalTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"vesselVisits\": [\n    {\n      \"visitId\": \"<string>\",\n      \"vesselName\": \"<string>\",\n      \"vesselLloyd\": \"<string>\",\n      \"mmsi\": \"<string>\",\n      \"imo\": \"<string>\",\n      \"lineOperator\": \"<string>\",\n      \"service\": \"<string>\",\n      \"berth\": \"<string>\",\n      \"status\": \"INBOUND\",\n      \"eta\": \"<dateTime>\",\n      \"ata\": \"<dateTime>\",\n      \"etd\": \"<dateTime>\",\n      \"atd\": \"<dateTime>\",\n      \"plannedMoves\": \"<integer>\",\n      \"completedMoves\": \"<integer>\",\n      \"remainingMoves\": \"<integer>\"\n    },\n    {\n      \"visitId\": \"<string>\",\n      \"vesselName\": \"<string>\",\n      \"vesselLloyd\": \"<string>\",\n      \"mmsi\": \"<string>\",\n      \"imo\": \"<string>\",\n      \"lineOperator\": \"<string>\",\n      \"service\": \"<string>\",\n      \"berth\": \"<string>\",\n      \"status\": \"COMPLETE\",\n      \"eta\": \"<dateTime>\",\n      \"ata\": \"<dateTime>\",\n      \"etd\": \"<dateTime>\",\n      \"atd\": \"<dateTime>\",\n      \"plannedMoves\": \"<integer>\",\n      \"completedMoves\": \"<integer>\",\n      \"remainingMoves\": \"<integer>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:16:33.000Z",
+              "updatedAt": "2026-07-28T02:16:33.000Z",
+              "uid": "35240-cc3d41b7-1b48-4d05-b3fe-15881269b0dd"
+            }
+          ],
+          "createdAt": "2026-07-28T02:16:33.000Z",
+          "updatedAt": "2026-07-28T02:16:33.000Z",
+          "uid": "35240-60d85f11-43da-4e56-9f34-0b63f4ce27c6"
+        }
+      ],
+      "id": "a542de76-17e8-4d4d-97d7-6ec8c1f17f24",
+      "createdAt": "2026-07-28T02:16:33.000Z",
+      "updatedAt": "2026-07-28T02:16:33.000Z",
+      "uid": "35240-a542de76-17e8-4d4d-97d7-6ec8c1f17f24"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "terminal",
+      "value": "yourterminal"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{terminal}}.navis.example.com/apex/n4/api/v2"
+    }
+  ]
+}

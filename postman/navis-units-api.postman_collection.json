@@ -1,0 +1,431 @@
+{
+  "info": {
+    "_postman_id": "09f6456e-8b64-4405-9122-b15fc1a43324",
+    "name": "Navis N4 Terminal Operating System REST Gate Units API",
+    "description": "NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.\n\nContact Support:\n Name: Kaleris Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:32.000Z",
+    "updatedAt": "2026-07-28T02:16:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-09f6456e-8b64-4405-9122-b15fc1a43324"
+  },
+  "item": [
+    {
+      "name": "units",
+      "item": [
+        {
+          "name": "{unitId}",
+          "item": [
+            {
+              "name": "Get container unit details",
+              "id": "4e7fa0cf-8366-412f-82c1-87e866df4411",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/units/:unitId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "units",
+                    ":unitId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "140c20a3-b27d-4762-bc9b-8e0160fce0a7",
+                      "key": "unitId",
+                      "value": "<string>",
+                      "description": "(Required) N4 unit identifier or ISO 6346 container number"
+                    }
+                  ]
+                },
+                "description": "Retrieve full details of a container unit including position, status, holds, and event history."
+              },
+              "response": [
+                {
+                  "id": "3dbd783d-fa69-4489-bc51-4a841a73d795",
+                  "name": "Container unit details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/units/:unitId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "units",
+                        ":unitId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "unitId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"unitNbr\": \"<string>\",\n  \"unitId\": \"<integer>\",\n  \"category\": \"EXPORT\",\n  \"freightKind\": \"FCL\",\n  \"equipmentType\": \"<string>\",\n  \"equipmentLength\": \"<integer>\",\n  \"lineOperator\": \"<string>\",\n  \"currentPosition\": {\n    \"locType\": \"VESSEL\",\n    \"blockName\": \"<string>\",\n    \"bayNbr\": \"<integer>\",\n    \"rowNbr\": \"<integer>\",\n    \"tierNbr\": \"<integer>\",\n    \"slotName\": \"<string>\"\n  },\n  \"arrivalVesselVisit\": \"<string>\",\n  \"departureVesselVisit\": \"<string>\",\n  \"holds\": [\n    {\n      \"holdId\": \"<string>\",\n      \"holdType\": \"<string>\",\n      \"holdStatus\": \"EXPIRED\",\n      \"appliedBy\": \"<string>\",\n      \"appliedDate\": \"<dateTime>\",\n      \"releasedDate\": \"<dateTime>\",\n      \"reason\": \"<string>\"\n    },\n    {\n      \"holdId\": \"<string>\",\n      \"holdType\": \"<string>\",\n      \"holdStatus\": \"EXPIRED\",\n      \"appliedBy\": \"<string>\",\n      \"appliedDate\": \"<dateTime>\",\n      \"releasedDate\": \"<dateTime>\",\n      \"reason\": \"<string>\"\n    }\n  ],\n  \"hazardous\": \"<boolean>\",\n  \"imdgClass\": \"<string>\",\n  \"reefer\": \"<boolean>\",\n  \"temperature\": \"<number>\",\n  \"weight\": \"<number>\",\n  \"inGateDate\": \"<dateTime>\",\n  \"outGateDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:16:32.000Z",
+                  "updatedAt": "2026-07-28T02:16:32.000Z",
+                  "uid": "35240-3dbd783d-fa69-4489-bc51-4a841a73d795"
+                },
+                {
+                  "id": "74588705-36da-4443-89bf-4f645fb9409d",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/units/:unitId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "units",
+                        ":unitId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "unitId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errorCode\": \"<string>\",\n  \"errorMessage\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:32.000Z",
+                  "updatedAt": "2026-07-28T02:16:32.000Z",
+                  "uid": "35240-74588705-36da-4443-89bf-4f645fb9409d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:32.000Z",
+              "updatedAt": "2026-07-28T02:16:32.000Z",
+              "uid": "35240-4e7fa0cf-8366-412f-82c1-87e866df4411"
+            }
+          ],
+          "id": "bd46d2b6-9b3c-4739-9434-49d9ab674da2",
+          "createdAt": "2026-07-28T02:16:32.000Z",
+          "updatedAt": "2026-07-28T02:16:32.000Z",
+          "uid": "35240-bd46d2b6-9b3c-4739-9434-49d9ab674da2"
+        },
+        {
+          "name": "Search container units",
+          "id": "b15193a2-d221-466b-93f6-f06b9b7fe9af",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/units?unitNbr=<string>&equipmentType=CTR&category=EMPTY&freightKind=FCL&positionLocType=DOCK&lineOperator=<string>&vesselVisit=<string>&limit=100&offset=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "units"
+              ],
+              "query": [
+                {
+                  "description": "Container number (ISO 6346 format, e.g., MSCU1234567)",
+                  "key": "unitNbr",
+                  "value": "<string>"
+                },
+                {
+                  "key": "equipmentType",
+                  "value": "CTR"
+                },
+                {
+                  "key": "category",
+                  "value": "EMPTY"
+                },
+                {
+                  "key": "freightKind",
+                  "value": "FCL"
+                },
+                {
+                  "key": "positionLocType",
+                  "value": "DOCK"
+                },
+                {
+                  "description": "Shipping line SCAC code",
+                  "key": "lineOperator",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Vessel visit identifier",
+                  "key": "vesselVisit",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Search for container units (TEUs, cargo units) in the terminal yard. Returns current position, status, hazmat class, and associated visit."
+          },
+          "response": [
+            {
+              "id": "584cfeb2-8e18-49bf-9909-11e3c5b49840",
+              "name": "Container units matching the query",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/units?unitNbr=<string>&equipmentType=CTR&category=EMPTY&freightKind=FCL&positionLocType=DOCK&lineOperator=<string>&vesselVisit=<string>&limit=100&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "units"
+                  ],
+                  "query": [
+                    {
+                      "description": "Container number (ISO 6346 format, e.g., MSCU1234567)",
+                      "key": "unitNbr",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipmentType",
+                      "value": "CTR"
+                    },
+                    {
+                      "key": "category",
+                      "value": "EMPTY"
+                    },
+                    {
+                      "key": "freightKind",
+                      "value": "FCL"
+                    },
+                    {
+                      "key": "positionLocType",
+                      "value": "DOCK"
+                    },
+                    {
+                      "description": "Shipping line SCAC code",
+                      "key": "lineOperator",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Vessel visit identifier",
+                      "key": "vesselVisit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"units\": [\n    {\n      \"unitNbr\": \"<string>\",\n      \"unitId\": \"<integer>\",\n      \"category\": \"EMPTY\",\n      \"freightKind\": \"FCL\",\n      \"equipmentType\": \"<string>\",\n      \"equipmentLength\": \"<integer>\",\n      \"lineOperator\": \"<string>\",\n      \"currentPosition\": {\n        \"locType\": \"VESSEL_BUFFER\",\n        \"blockName\": \"<string>\",\n        \"bayNbr\": \"<integer>\",\n        \"rowNbr\": \"<integer>\",\n        \"tierNbr\": \"<integer>\",\n        \"slotName\": \"<string>\"\n      },\n      \"arrivalVesselVisit\": \"<string>\",\n      \"departureVesselVisit\": \"<string>\",\n      \"holds\": [\n        {\n          \"holdId\": \"<string>\",\n          \"holdType\": \"<string>\",\n          \"holdStatus\": \"RELEASED\",\n          \"appliedBy\": \"<string>\",\n          \"appliedDate\": \"<dateTime>\",\n          \"releasedDate\": \"<dateTime>\",\n          \"reason\": \"<string>\"\n        },\n        {\n          \"holdId\": \"<string>\",\n          \"holdType\": \"<string>\",\n          \"holdStatus\": \"ACTIVE\",\n          \"appliedBy\": \"<string>\",\n          \"appliedDate\": \"<dateTime>\",\n          \"releasedDate\": \"<dateTime>\",\n          \"reason\": \"<string>\"\n        }\n      ],\n      \"hazardous\": \"<boolean>\",\n      \"imdgClass\": \"<string>\",\n      \"reefer\": \"<boolean>\",\n      \"temperature\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"inGateDate\": \"<dateTime>\",\n      \"outGateDate\": \"<dateTime>\"\n    },\n    {\n      \"unitNbr\": \"<string>\",\n      \"unitId\": \"<integer>\",\n      \"category\": \"TRANSSHIP\",\n      \"freightKind\": \"LCL\",\n      \"equipmentType\": \"<string>\",\n      \"equipmentLength\": \"<integer>\",\n      \"lineOperator\": \"<string>\",\n      \"currentPosition\": {\n        \"locType\": \"YARD\",\n        \"blockName\": \"<string>\",\n        \"bayNbr\": \"<integer>\",\n        \"rowNbr\": \"<integer>\",\n        \"tierNbr\": \"<integer>\",\n        \"slotName\": \"<string>\"\n      },\n      \"arrivalVesselVisit\": \"<string>\",\n      \"departureVesselVisit\": \"<string>\",\n      \"holds\": [\n        {\n          \"holdId\": \"<string>\",\n          \"holdType\": \"<string>\",\n          \"holdStatus\": \"EXPIRED\",\n          \"appliedBy\": \"<string>\",\n          \"appliedDate\": \"<dateTime>\",\n          \"releasedDate\": \"<dateTime>\",\n          \"reason\": \"<string>\"\n        },\n        {\n          \"holdId\": \"<string>\",\n          \"holdType\": \"<string>\",\n          \"holdStatus\": \"RELEASED\",\n          \"appliedBy\": \"<string>\",\n          \"appliedDate\": \"<dateTime>\",\n          \"releasedDate\": \"<dateTime>\",\n          \"reason\": \"<string>\"\n        }\n      ],\n      \"hazardous\": \"<boolean>\",\n      \"imdgClass\": \"<string>\",\n      \"reefer\": \"<boolean>\",\n      \"temperature\": \"<number>\",\n      \"weight\": \"<number>\",\n      \"inGateDate\": \"<dateTime>\",\n      \"outGateDate\": \"<dateTime>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:16:32.000Z",
+              "updatedAt": "2026-07-28T02:16:32.000Z",
+              "uid": "35240-584cfeb2-8e18-49bf-9909-11e3c5b49840"
+            },
+            {
+              "id": "b2c4ee78-3905-402c-8beb-23e4a85af87d",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/units?unitNbr=<string>&equipmentType=CTR&category=EMPTY&freightKind=FCL&positionLocType=DOCK&lineOperator=<string>&vesselVisit=<string>&limit=100&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "units"
+                  ],
+                  "query": [
+                    {
+                      "description": "Container number (ISO 6346 format, e.g., MSCU1234567)",
+                      "key": "unitNbr",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipmentType",
+                      "value": "CTR"
+                    },
+                    {
+                      "key": "category",
+                      "value": "EMPTY"
+                    },
+                    {
+                      "key": "freightKind",
+                      "value": "FCL"
+                    },
+                    {
+                      "key": "positionLocType",
+                      "value": "DOCK"
+                    },
+                    {
+                      "description": "Shipping line SCAC code",
+                      "key": "lineOperator",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Vessel visit identifier",
+                      "key": "vesselVisit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errorCode\": \"<string>\",\n  \"errorMessage\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:16:32.000Z",
+              "updatedAt": "2026-07-28T02:16:32.000Z",
+              "uid": "35240-b2c4ee78-3905-402c-8beb-23e4a85af87d"
+            }
+          ],
+          "createdAt": "2026-07-28T02:16:32.000Z",
+          "updatedAt": "2026-07-28T02:16:32.000Z",
+          "uid": "35240-b15193a2-d221-466b-93f6-f06b9b7fe9af"
+        }
+      ],
+      "id": "8cb96dd0-3e5a-4ede-8cc8-72d50601fe12",
+      "createdAt": "2026-07-28T02:16:32.000Z",
+      "updatedAt": "2026-07-28T02:16:32.000Z",
+      "uid": "35240-8cb96dd0-3e5a-4ede-8cc8-72d50601fe12"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "terminal",
+      "value": "yourterminal"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{terminal}}.navis.example.com/apex/n4/api/v2"
+    }
+  ]
+}

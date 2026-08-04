@@ -1,0 +1,141 @@
+{
+  "info": {
+    "_postman_id": "a43e1025-849b-459d-97b3-9a82bb4ba0b1",
+    "name": "Navis N4 Terminal Operating System REST Gate Operations API",
+    "description": "NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.\n\nContact Support:\n Name: Kaleris Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:31.000Z",
+    "updatedAt": "2026-07-28T02:16:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a43e1025-849b-459d-97b3-9a82bb4ba0b1"
+  },
+  "item": [
+    {
+      "name": "work-queues",
+      "item": [
+        {
+          "name": "Get active work queues",
+          "id": "794c136c-7fb8-4b81-ac8d-e17e4812cc13",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/work-queues?craneId=<string>&status=QUEUED",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "work-queues"
+              ],
+              "query": [
+                {
+                  "key": "craneId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "QUEUED"
+                }
+              ]
+            },
+            "description": "Retrieve current crane and equipment work queues showing pending moves."
+          },
+          "response": [
+            {
+              "id": "44f7407e-bbfb-464b-83f5-4b98bc70f2db",
+              "name": "Work queues",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/work-queues?craneId=<string>&status=QUEUED",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "work-queues"
+                  ],
+                  "query": [
+                    {
+                      "key": "craneId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "QUEUED"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"queues\": [\n    {\n      \"workQueueId\": \"<string>\",\n      \"craneId\": \"<string>\",\n      \"moveType\": \"RECV\",\n      \"fromPosition\": \"<string>\",\n      \"toPosition\": \"<string>\",\n      \"containerNbr\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"status\": \"QUEUED\",\n      \"assignedTo\": \"<string>\"\n    },\n    {\n      \"workQueueId\": \"<string>\",\n      \"craneId\": \"<string>\",\n      \"moveType\": \"DRAY\",\n      \"fromPosition\": \"<string>\",\n      \"toPosition\": \"<string>\",\n      \"containerNbr\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"status\": \"COMPLETE\",\n      \"assignedTo\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:16:31.000Z",
+              "updatedAt": "2026-07-28T02:16:31.000Z",
+              "uid": "35240-44f7407e-bbfb-464b-83f5-4b98bc70f2db"
+            }
+          ],
+          "createdAt": "2026-07-28T02:16:31.000Z",
+          "updatedAt": "2026-07-28T02:16:31.000Z",
+          "uid": "35240-794c136c-7fb8-4b81-ac8d-e17e4812cc13"
+        }
+      ],
+      "id": "888dfbe6-965b-4bc9-bd1a-3b442e4ce8a7",
+      "createdAt": "2026-07-28T02:16:31.000Z",
+      "updatedAt": "2026-07-28T02:16:31.000Z",
+      "uid": "35240-888dfbe6-965b-4bc9-bd1a-3b442e4ce8a7"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "terminal",
+      "value": "yourterminal"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{terminal}}.navis.example.com/apex/n4/api/v2"
+    }
+  ]
+}
