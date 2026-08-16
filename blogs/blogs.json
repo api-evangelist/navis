@@ -5,7 +5,7 @@
       "source": "https://kaleris.com/feed/",
       "feed_url": "https://kaleris.com/feed/",
       "title": "",
-      "saved": 0,
+      "saved": 1,
       "method": "feed"
     },
     {
@@ -20,9 +20,10 @@
       "feed_url": "https://kaleriscommunity.force.com/",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "parse_failed"
     }
   ],
-  "post_count": 24,
-  "fetched": "2026-08-06T14:08:46Z"
+  "post_count": 25,
+  "fetched": "2026-08-15T12:11:08Z"
 }
