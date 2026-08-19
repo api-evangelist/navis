@@ -30,7 +30,7 @@ description: >-
   Navis (now operated by Kaleris) provides terminal operating systems and supply chain software for the maritime and
   intermodal industries. The flagship N4 product offers APIs for container tracking, vessel planning, berth scheduling,
   yard management, and gate operations, serving 650+ organizations across 95+ countries.
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
