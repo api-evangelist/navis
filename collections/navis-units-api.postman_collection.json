@@ -1,0 +1,485 @@
+{
+  "item": [
+    {
+      "id": "f9adb613-3632-4890-8a66-58a16f25a6a3",
+      "name": "Units",
+      "description": {
+        "content": "Container and cargo unit tracking",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4424916c-61e8-4c11-b984-1ba46bc8d6e3",
+          "name": "Search container units",
+          "request": {
+            "name": "Search container units",
+            "description": {
+              "content": "Search for container units (TEUs, cargo units) in the terminal yard. Returns current position, status, hazmat class, and associated visit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "units"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "unitNbr",
+                  "value": "<string>",
+                  "description": "Container number (ISO 6346 format, e.g., MSCU1234567)"
+                },
+                {
+                  "disabled": false,
+                  "key": "equipmentType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "freightKind",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "positionLocType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lineOperator",
+                  "value": "<string>",
+                  "description": "Shipping line SCAC code"
+                },
+                {
+                  "disabled": false,
+                  "key": "vesselVisit",
+                  "value": "<string>",
+                  "description": "Vessel visit identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your N4 terminal instance hostname",
+                  "type": "any",
+                  "value": "{{terminal}}",
+                  "key": "terminal"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d753c650-4fbf-4f8c-af2d-288923fcc01f",
+              "name": "Container units matching the query",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "units"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "unitNbr",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipmentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freightKind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "positionLocType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lineOperator",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vesselVisit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your N4 terminal instance hostname",
+                      "type": "any",
+                      "value": "{{terminal}}",
+                      "key": "terminal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"units\": [\n    {\n      \"unitNbr\": \"string\",\n      \"unitId\": 794,\n      \"category\": \"IMPORT\",\n      \"freightKind\": \"LCL\",\n      \"equipmentType\": \"string\",\n      \"equipmentLength\": 9886,\n      \"lineOperator\": \"string\",\n      \"currentPosition\": {\n        \"locType\": \"RAIL\",\n        \"blockName\": \"string\",\n        \"bayNbr\": 9887,\n        \"rowNbr\": 5526,\n        \"tierNbr\": 2315,\n        \"slotName\": \"string\"\n      },\n      \"arrivalVesselVisit\": \"string\",\n      \"departureVesselVisit\": \"string\",\n      \"holds\": [\n        {\n          \"holdId\": \"string\",\n          \"holdType\": \"string\",\n          \"holdStatus\": \"RELEASED\",\n          \"appliedBy\": \"string\",\n          \"appliedDate\": \"1962-01-31T21:24:33.982Z\",\n          \"releasedDate\": \"1981-04-01T08:29:04.989Z\",\n          \"reason\": \"string\"\n        },\n        {\n          \"holdId\": \"string\",\n          \"holdType\": \"string\",\n          \"holdStatus\": \"EXPIRED\",\n          \"appliedBy\": \"string\",\n          \"appliedDate\": \"1986-11-15T11:13:01.001Z\",\n          \"releasedDate\": \"2012-04-01T06:02:03.103Z\",\n          \"reason\": \"string\"\n        }\n      ],\n      \"hazardous\": false,\n      \"imdgClass\": \"string\",\n      \"reefer\": true,\n      \"temperature\": 4710.797984654596,\n      \"weight\": 5729.817746127346,\n      \"inGateDate\": \"1967-04-24T04:22:58.778Z\",\n      \"outGateDate\": \"2016-06-23T19:46:46.278Z\"\n    },\n    {\n      \"unitNbr\": \"string\",\n      \"unitId\": 4904,\n      \"category\": \"IMPORT\",\n      \"freightKind\": \"MTY\",\n      \"equipmentType\": \"string\",\n      \"equipmentLength\": 1882,\n      \"lineOperator\": \"string\",\n      \"currentPosition\": {\n        \"locType\": \"RAIL\",\n        \"blockName\": \"string\",\n        \"bayNbr\": 609,\n        \"rowNbr\": 9405,\n        \"tierNbr\": 4302,\n        \"slotName\": \"string\"\n      },\n      \"arrivalVesselVisit\": \"string\",\n      \"departureVesselVisit\": \"string\",\n      \"holds\": [\n        {\n          \"holdId\": \"string\",\n          \"holdType\": \"string\",\n          \"holdStatus\": \"RELEASED\",\n          \"appliedBy\": \"string\",\n          \"appliedDate\": \"1974-06-12T12:54:30.843Z\",\n          \"releasedDate\": \"1976-10-28T21:05:30.047Z\",\n          \"reason\": \"string\"\n        },\n        {\n          \"holdId\": \"string\",\n          \"holdType\": \"string\",\n          \"holdStatus\": \"RELEASED\",\n          \"appliedBy\": \"string\",\n          \"appliedDate\": \"2003-03-14T07:02:31.086Z\",\n          \"releasedDate\": \"1980-07-26T03:49:57.966Z\",\n          \"reason\": \"string\"\n        }\n      ],\n      \"hazardous\": false,\n      \"imdgClass\": \"string\",\n      \"reefer\": false,\n      \"temperature\": 2026.2322492026974,\n      \"weight\": 2676.685732873425,\n      \"inGateDate\": \"1962-12-30T23:20:18.210Z\",\n      \"outGateDate\": \"1981-10-03T21:23:45.754Z\"\n    }\n  ],\n  \"totalCount\": 6089,\n  \"limit\": 8632,\n  \"offset\": 4522\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa1cb4c4-6496-4166-be7e-2a99f24fd9f8",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "units"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "unitNbr",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "equipmentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "freightKind",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "positionLocType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lineOperator",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vesselVisit",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your N4 terminal instance hostname",
+                      "type": "any",
+                      "value": "{{terminal}}",
+                      "key": "terminal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8978fa4c-8d16-466c-b20d-0dbdb15b4c9a",
+          "name": "Get container unit details",
+          "request": {
+            "name": "Get container unit details",
+            "description": {
+              "content": "Retrieve full details of a container unit including position, status, holds, and event history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "units",
+                ":unitId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "unitId",
+                  "description": "(Required) N4 unit identifier or ISO 6346 container number"
+                },
+                {
+                  "description": "Your N4 terminal instance hostname",
+                  "type": "any",
+                  "value": "{{terminal}}",
+                  "key": "terminal"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26fa800d-75e3-49cb-b79d-3687da006450",
+              "name": "Container unit details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "units",
+                    ":unitId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unitId",
+                      "description": "(Required) N4 unit identifier or ISO 6346 container number"
+                    },
+                    {
+                      "description": "Your N4 terminal instance hostname",
+                      "type": "any",
+                      "value": "{{terminal}}",
+                      "key": "terminal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"unitNbr\": \"string\",\n  \"unitId\": 5626,\n  \"category\": \"TRANSSHIP\",\n  \"freightKind\": \"LCL\",\n  \"equipmentType\": \"string\",\n  \"equipmentLength\": 9702,\n  \"lineOperator\": \"string\",\n  \"currentPosition\": {\n    \"locType\": \"YARD\",\n    \"blockName\": \"string\",\n    \"bayNbr\": 2931,\n    \"rowNbr\": 9773,\n    \"tierNbr\": 2085,\n    \"slotName\": \"string\"\n  },\n  \"arrivalVesselVisit\": \"string\",\n  \"departureVesselVisit\": \"string\",\n  \"holds\": [\n    {\n      \"holdId\": \"string\",\n      \"holdType\": \"string\",\n      \"holdStatus\": \"EXPIRED\",\n      \"appliedBy\": \"string\",\n      \"appliedDate\": \"1954-10-22T22:48:36.697Z\",\n      \"releasedDate\": \"2006-11-08T13:36:46.609Z\",\n      \"reason\": \"string\"\n    },\n    {\n      \"holdId\": \"string\",\n      \"holdType\": \"string\",\n      \"holdStatus\": \"EXPIRED\",\n      \"appliedBy\": \"string\",\n      \"appliedDate\": \"1949-10-17T12:27:17.253Z\",\n      \"releasedDate\": \"1982-07-31T02:36:56.498Z\",\n      \"reason\": \"string\"\n    }\n  ],\n  \"hazardous\": true,\n  \"imdgClass\": \"string\",\n  \"reefer\": false,\n  \"temperature\": 9551.205251797901,\n  \"weight\": 1662.6570162515875,\n  \"inGateDate\": \"1996-03-29T06:11:40.304Z\",\n  \"outGateDate\": \"2007-02-16T21:59:49.217Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3301651b-e91f-40fc-96ca-5e2c755010ff",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "units",
+                    ":unitId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unitId",
+                      "description": "(Required) N4 unit identifier or ISO 6346 container number"
+                    },
+                    {
+                      "description": "Your N4 terminal instance hostname",
+                      "type": "any",
+                      "value": "{{terminal}}",
+                      "key": "terminal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your N4 terminal instance hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourterminal",
+      "key": "terminal"
+    },
+    {
+      "type": "string",
+      "value": "https://{{terminal}}.navis.example.com/apex/n4/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7e5de792-bac0-449e-b07f-db81127bb991",
+    "name": "Navis N4 Terminal Operating System REST Gate Units API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.\n\nContact Support:\n Name: Kaleris Support",
+      "type": "text/plain"
+    }
+  }
+}

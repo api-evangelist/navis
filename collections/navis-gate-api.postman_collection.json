@@ -1,0 +1,202 @@
+{
+  "item": [
+    {
+      "id": "bd2cd36b-9497-488d-b7ad-0fafad93f766",
+      "name": "Gate",
+      "description": {
+        "content": "Truck gate transactions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff50dce4-0b18-4b32-9c53-e5f8475d4665",
+          "name": "List gate transactions",
+          "request": {
+            "name": "List gate transactions",
+            "description": {
+              "content": "Retrieve in-gate and out-gate transactions. Returns truck visits, container gate-ins, and gate-outs with timestamps and driver information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gate-transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "transactionType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "containerNbr",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "truckId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "toDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your N4 terminal instance hostname",
+                  "type": "any",
+                  "value": "{{terminal}}",
+                  "key": "terminal"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83756c6a-12a9-4c6b-812f-03aef973ce78",
+              "name": "Gate transactions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gate-transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "transactionType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "containerNbr",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "truckId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your N4 terminal instance hostname",
+                      "type": "any",
+                      "value": "{{terminal}}",
+                      "key": "terminal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactions\": [\n    {\n      \"transactionId\": \"string\",\n      \"transactionType\": \"IN_GATE\",\n      \"containerNbr\": \"string\",\n      \"truckId\": \"string\",\n      \"driverLicense\": \"string\",\n      \"transactionTime\": \"1998-06-02T08:30:48.774Z\",\n      \"laneId\": \"string\",\n      \"appointmentNbr\": \"string\",\n      \"lineOperator\": \"string\"\n    },\n    {\n      \"transactionId\": \"string\",\n      \"transactionType\": \"TROUBLE\",\n      \"containerNbr\": \"string\",\n      \"truckId\": \"string\",\n      \"driverLicense\": \"string\",\n      \"transactionTime\": \"2009-03-18T04:26:55.710Z\",\n      \"laneId\": \"string\",\n      \"appointmentNbr\": \"string\",\n      \"lineOperator\": \"string\"\n    }\n  ],\n  \"totalCount\": 1084\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your N4 terminal instance hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourterminal",
+      "key": "terminal"
+    },
+    {
+      "type": "string",
+      "value": "https://{{terminal}}.navis.example.com/apex/n4/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9ec1b04a-6ec6-4c8c-b74e-f44024cdd867",
+    "name": "Navis N4 Terminal Operating System REST Gate API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.\n\nContact Support:\n Name: Kaleris Support",
+      "type": "text/plain"
+    }
+  }
+}

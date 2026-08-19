@@ -1,0 +1,175 @@
+{
+  "item": [
+    {
+      "id": "db5d981d-2751-43a0-aeae-f3478f07ad8d",
+      "name": "Holds",
+      "description": {
+        "content": "Container hold management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e67df208-b291-4b89-80c7-acfc26638df8",
+          "name": "List active holds on units",
+          "request": {
+            "name": "List active holds on units",
+            "description": {
+              "content": "Retrieve active holds (customs, line, port authority) on container units that prevent release or loading.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "holds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "unitNbr",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "holdType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your N4 terminal instance hostname",
+                  "type": "any",
+                  "value": "{{terminal}}",
+                  "key": "terminal"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b6ef455-5246-41e1-877b-8d535a227f76",
+              "name": "Active holds",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "holds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "unitNbr",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "holdType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your N4 terminal instance hostname",
+                      "type": "any",
+                      "value": "{{terminal}}",
+                      "key": "terminal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"holds\": [\n    {\n      \"holdId\": \"string\",\n      \"holdType\": \"string\",\n      \"holdStatus\": \"EXPIRED\",\n      \"appliedBy\": \"string\",\n      \"appliedDate\": \"1987-01-01T23:36:32.155Z\",\n      \"releasedDate\": \"2024-01-11T18:50:26.436Z\",\n      \"reason\": \"string\"\n    },\n    {\n      \"holdId\": \"string\",\n      \"holdType\": \"string\",\n      \"holdStatus\": \"EXPIRED\",\n      \"appliedBy\": \"string\",\n      \"appliedDate\": \"1956-09-08T21:13:47.735Z\",\n      \"releasedDate\": \"2016-02-28T17:25:41.153Z\",\n      \"reason\": \"string\"\n    }\n  ],\n  \"totalCount\": 3562\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your N4 terminal instance hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourterminal",
+      "key": "terminal"
+    },
+    {
+      "type": "string",
+      "value": "https://{{terminal}}.navis.example.com/apex/n4/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9f612442-0bc9-460b-ba3e-5d9b5a561b44",
+    "name": "Navis N4 Terminal Operating System REST Gate Holds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.\n\nContact Support:\n Name: Kaleris Support",
+      "type": "text/plain"
+    }
+  }
+}

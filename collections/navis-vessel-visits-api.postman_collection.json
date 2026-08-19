@@ -1,0 +1,489 @@
+{
+  "item": [
+    {
+      "id": "21584829-fc36-43ec-9596-6e5cf2c5c625",
+      "name": "Vessel Visits",
+      "description": {
+        "content": "Vessel port call management and planning",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d91d5d0-1def-416b-8d4d-c4c61bfa05d2",
+          "name": "List vessel visits",
+          "request": {
+            "name": "List vessel visits",
+            "description": {
+              "content": "Retrieve vessel visits (port calls) including vessel name, Lloyd's number, service, arrival/departure times, and berth assignment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vessel-visits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vesselName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "arrivalFrom",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "arrivalTo",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your N4 terminal instance hostname",
+                  "type": "any",
+                  "value": "{{terminal}}",
+                  "key": "terminal"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f41ec16-0a6d-42c1-8a79-d9ca5111a52e",
+              "name": "Vessel visits list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vessel-visits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vesselName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "arrivalFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "arrivalTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your N4 terminal instance hostname",
+                      "type": "any",
+                      "value": "{{terminal}}",
+                      "key": "terminal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vesselVisits\": [\n    {\n      \"visitId\": \"string\",\n      \"vesselName\": \"string\",\n      \"vesselLloyd\": \"string\",\n      \"mmsi\": \"string\",\n      \"imo\": \"string\",\n      \"lineOperator\": \"string\",\n      \"service\": \"string\",\n      \"berth\": \"string\",\n      \"status\": \"DEPARTED\",\n      \"eta\": \"1952-06-19T17:56:52.314Z\",\n      \"ata\": \"1984-01-16T05:13:57.319Z\",\n      \"etd\": \"1956-07-24T05:38:13.343Z\",\n      \"atd\": \"2002-05-05T21:01:47.199Z\",\n      \"plannedMoves\": 8199,\n      \"completedMoves\": 515,\n      \"remainingMoves\": 8352\n    },\n    {\n      \"visitId\": \"string\",\n      \"vesselName\": \"string\",\n      \"vesselLloyd\": \"string\",\n      \"mmsi\": \"string\",\n      \"imo\": \"string\",\n      \"lineOperator\": \"string\",\n      \"service\": \"string\",\n      \"berth\": \"string\",\n      \"status\": \"DEPARTED\",\n      \"eta\": \"2022-12-11T23:06:38.262Z\",\n      \"ata\": \"1965-08-02T05:20:04.813Z\",\n      \"etd\": \"1960-06-21T08:13:27.766Z\",\n      \"atd\": \"1985-04-20T07:41:08.211Z\",\n      \"plannedMoves\": 936,\n      \"completedMoves\": 3472,\n      \"remainingMoves\": 3175\n    }\n  ],\n  \"totalCount\": 9995\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13ce7e5e-44c7-49ab-ad36-e742aba117c0",
+          "name": "Get vessel visit details",
+          "request": {
+            "name": "Get vessel visit details",
+            "description": {
+              "content": "Retrieve full vessel visit including bay plan, stow plan, and cargo manifest summary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vessel-visits",
+                ":visitId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "visitId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your N4 terminal instance hostname",
+                  "type": "any",
+                  "value": "{{terminal}}",
+                  "key": "terminal"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ab00ab2-556d-4cae-b430-dee0d8ccf3a9",
+              "name": "Vessel visit details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vessel-visits",
+                    ":visitId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "visitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your N4 terminal instance hostname",
+                      "type": "any",
+                      "value": "{{terminal}}",
+                      "key": "terminal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"visitId\": \"string\",\n  \"vesselName\": \"string\",\n  \"vesselLloyd\": \"string\",\n  \"mmsi\": \"string\",\n  \"imo\": \"string\",\n  \"lineOperator\": \"string\",\n  \"service\": \"string\",\n  \"berth\": \"string\",\n  \"status\": \"WORKING\",\n  \"eta\": \"1964-02-08T12:42:31.111Z\",\n  \"ata\": \"1996-05-27T10:52:58.430Z\",\n  \"etd\": \"2009-09-08T23:38:11.741Z\",\n  \"atd\": \"2003-02-22T15:12:12.505Z\",\n  \"plannedMoves\": 9624,\n  \"completedMoves\": 8210,\n  \"remainingMoves\": 2306\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99906c14-08e5-4896-8758-253ab545359d",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vessel-visits",
+                    ":visitId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "visitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your N4 terminal instance hostname",
+                      "type": "any",
+                      "value": "{{terminal}}",
+                      "key": "terminal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"string\",\n  \"errorMessage\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e4ee867-1422-4229-aaba-3fbcdb19f68b",
+          "name": "Get units for a vessel visit",
+          "request": {
+            "name": "Get units for a vessel visit",
+            "description": {
+              "content": "List all container units associated with a vessel visit (inbound and outbound).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vessel-visits",
+                ":visitId",
+                "units"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "500"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "visitId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your N4 terminal instance hostname",
+                  "type": "any",
+                  "value": "{{terminal}}",
+                  "key": "terminal"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce02fadd-2389-4e0b-8438-957a7c2c6a90",
+              "name": "Units for the vessel visit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vessel-visits",
+                    ":visitId",
+                    "units"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "500"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "visitId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your N4 terminal instance hostname",
+                      "type": "any",
+                      "value": "{{terminal}}",
+                      "key": "terminal"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"units\": [\n    {\n      \"unitNbr\": \"string\",\n      \"unitId\": 2841,\n      \"category\": \"EMPTY\",\n      \"freightKind\": \"LCL\",\n      \"equipmentType\": \"string\",\n      \"equipmentLength\": 2643,\n      \"lineOperator\": \"string\",\n      \"currentPosition\": {\n        \"locType\": \"VESSEL\",\n        \"blockName\": \"string\",\n        \"bayNbr\": 7604,\n        \"rowNbr\": 4948,\n        \"tierNbr\": 9347,\n        \"slotName\": \"string\"\n      },\n      \"arrivalVesselVisit\": \"string\",\n      \"departureVesselVisit\": \"string\",\n      \"holds\": [\n        {\n          \"holdId\": \"string\",\n          \"holdType\": \"string\",\n          \"holdStatus\": \"RELEASED\",\n          \"appliedBy\": \"string\",\n          \"appliedDate\": \"1996-04-02T10:35:16.949Z\",\n          \"releasedDate\": \"1963-04-03T15:49:14.161Z\",\n          \"reason\": \"string\"\n        },\n        {\n          \"holdId\": \"string\",\n          \"holdType\": \"string\",\n          \"holdStatus\": \"EXPIRED\",\n          \"appliedBy\": \"string\",\n          \"appliedDate\": \"1990-06-16T03:21:33.972Z\",\n          \"releasedDate\": \"1972-11-01T11:37:42.060Z\",\n          \"reason\": \"string\"\n        }\n      ],\n      \"hazardous\": true,\n      \"imdgClass\": \"string\",\n      \"reefer\": true,\n      \"temperature\": 8768.397879942037,\n      \"weight\": 2077.4988398528494,\n      \"inGateDate\": \"1955-06-20T08:09:59.692Z\",\n      \"outGateDate\": \"1965-11-20T17:11:56.966Z\"\n    },\n    {\n      \"unitNbr\": \"string\",\n      \"unitId\": 4645,\n      \"category\": \"IMPORT\",\n      \"freightKind\": \"MTY\",\n      \"equipmentType\": \"string\",\n      \"equipmentLength\": 4161,\n      \"lineOperator\": \"string\",\n      \"currentPosition\": {\n        \"locType\": \"RAIL\",\n        \"blockName\": \"string\",\n        \"bayNbr\": 4332,\n        \"rowNbr\": 3768,\n        \"tierNbr\": 1065,\n        \"slotName\": \"string\"\n      },\n      \"arrivalVesselVisit\": \"string\",\n      \"departureVesselVisit\": \"string\",\n      \"holds\": [\n        {\n          \"holdId\": \"string\",\n          \"holdType\": \"string\",\n          \"holdStatus\": \"ACTIVE\",\n          \"appliedBy\": \"string\",\n          \"appliedDate\": \"2011-07-30T00:24:13.565Z\",\n          \"releasedDate\": \"1986-06-29T01:36:58.742Z\",\n          \"reason\": \"string\"\n        },\n        {\n          \"holdId\": \"string\",\n          \"holdType\": \"string\",\n          \"holdStatus\": \"EXPIRED\",\n          \"appliedBy\": \"string\",\n          \"appliedDate\": \"1991-12-15T18:07:10.805Z\",\n          \"releasedDate\": \"1965-08-14T19:22:48.828Z\",\n          \"reason\": \"string\"\n        }\n      ],\n      \"hazardous\": false,\n      \"imdgClass\": \"string\",\n      \"reefer\": true,\n      \"temperature\": 4015.5042224610315,\n      \"weight\": 8313.302243425347,\n      \"inGateDate\": \"1965-11-27T18:43:37.648Z\",\n      \"outGateDate\": \"2000-04-17T08:49:42.577Z\"\n    }\n  ],\n  \"totalCount\": 4858,\n  \"limit\": 5421,\n  \"offset\": 7961\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your N4 terminal instance hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourterminal",
+      "key": "terminal"
+    },
+    {
+      "type": "string",
+      "value": "https://{{terminal}}.navis.example.com/apex/n4/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "27b668cd-fefc-4957-9495-a3a88353dd49",
+    "name": "Navis N4 Terminal Operating System REST Gate Vessel Visits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.\n\nContact Support:\n Name: Kaleris Support",
+      "type": "text/plain"
+    }
+  }
+}

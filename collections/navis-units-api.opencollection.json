@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Navis N4 Terminal Operating System REST Gate Units API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Units",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search container units",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{terminal}.navis.example.com/apex/n4/api/v2/units",
+            "params": [
+              {
+                "name": "unitNbr",
+                "value": "",
+                "type": "query",
+                "description": "Container number (ISO 6346 format, e.g., MSCU1234567)"
+              },
+              {
+                "name": "equipmentType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "freightKind",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "positionLocType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lineOperator",
+                "value": "",
+                "type": "query",
+                "description": "Shipping line SCAC code"
+              },
+              {
+                "name": "vesselVisit",
+                "value": "",
+                "type": "query",
+                "description": "Vessel visit identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search for container units (TEUs, cargo units) in the terminal yard. Returns current position, status, hazmat class, and associated visit."
+        },
+        {
+          "info": {
+            "name": "Get container unit details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{terminal}.navis.example.com/apex/n4/api/v2/units/:unitId",
+            "params": [
+              {
+                "name": "unitId",
+                "value": "",
+                "type": "path",
+                "description": "N4 unit identifier or ISO 6346 container number"
+              }
+            ]
+          },
+          "docs": "Retrieve full details of a container unit including position, status, holds, and event history."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

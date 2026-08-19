@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Navis N4 Terminal Operating System REST Gate Operations API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get active work queues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{terminal}.navis.example.com/apex/n4/api/v2/work-queues",
+            "params": [
+              {
+                "name": "craneId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve current crane and equipment work queues showing pending moves."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
