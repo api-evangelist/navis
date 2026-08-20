@@ -73,7 +73,8 @@ apis:
   name: Navis (Kaleris) Operations API
   description: Work queues and crane operations
   humanURL: https://www.navis.com/
-  tags:
+  tags: []
+  tags_raw:
   - Operations
   properties:
   - type: OpenAPI
