@@ -1,0 +1,55 @@
+slug: navis
+provider: Navis (Kaleris)
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Gate
+  spec_file: navis-gate-api-openapi.yml
+  capability_id: BC-2470.30
+  capability_id_l1: BC-2470
+  capability_name: Gate Operations Management
+  confidence: 0.9
+  evidence: 'GET /gate-transactions  listGateTransactions  List gate transactions; schemas: GateTransaction'
+  reason: Terminal operating system exposing truck/rail gate transaction records for container terminals,
+    which is precisely gate-in/gate-out operations at a port or intermodal facility.
+- tag: Vessel Visits
+  spec_file: navis-vessel-visits-api-openapi.yml
+  capability_id: BC-2470.10
+  capability_id_l1: BC-2470
+  capability_name: Vessel and Aircraft Handling Management
+  confidence: 0.85
+  evidence: GET /vessel-visits  listVesselVisits; GET /vessel-visits/{visitId}/units  Get units for a
+    vessel visit
+  reason: Vessel visit records with their associated container units in a terminal operating system that
+    provides 'vessel planning, berth scheduling' — this is vessel handling at the terminal (berthing and
+    load/discharge).
+- tag: Holds
+  spec_file: navis-holds-api-openapi.yml
+  capability_id: BC-2470
+  capability_id_l1: BC-2470
+  capability_name: Terminal & Yard Operations Management
+  confidence: 0.7
+  evidence: 'GET /holds  listHolds  List active holds on units; schemas: Hold, HoldListResponse'
+  reason: Holds are release blocks placed on container units in the terminal operating system, governing
+    whether a unit may leave the terminal. Clearly terminal/yard operations, but the single read operation
+    does not tell us whether it belongs to gate, yard or capacity sub-capability, so only the L1 is asserted.
+- tag: Units
+  spec_file: navis-units-api-openapi.yml
+  capability_id: BC-2470.20
+  capability_id_l1: BC-2470
+  capability_name: Yard and Stack Management
+  confidence: 0.7
+  evidence: 'GET /units  searchUnits  Search container units; schemas: Unit, YardPosition'
+  reason: Search and retrieval of container units including their YardPosition inside a terminal — allocation
+    and location of containers within the yard/stack. Could alternatively be read as generic container
+    tracking, hence 0.7.

@@ -134,6 +134,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/json-ld/navis-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/navis-capability-edges.yml
+    name: Navis (Kaleris) Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/navis-kaleris/overview
   - type: AgenticAccess
