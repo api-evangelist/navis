@@ -3,6 +3,12 @@ url: https://raw.githubusercontent.com/api-evangelist/navis/refs/heads/main/apis
 name: Navis (Kaleris)
 tags:
   - Maritime
+  - Ports
+  - Terminal
+  - Containers
+  - Logistics
+tags_raw:
+  - Maritime
   - Port
   - Terminal
   - Container
