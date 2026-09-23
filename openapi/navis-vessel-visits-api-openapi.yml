@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Navis N4 Terminal Operating System REST Gate Vessel Visits API
+  title: Navis N4 Terminal Operating System REST Vessel Visits API
   description: NAVIS N4 provides terminal operating system APIs for container port operations. APIs enable container tracking, vessel planning, berth scheduling, yard management, and gate operations for port terminals and intermodal facilities. Now operated by Kaleris, serving 650+ organizations across 95+ countries.
   version: 2.0.0
   contact:
@@ -122,28 +122,61 @@ paths:
                 $ref: '#/components/schemas/UnitListResponse'
 components:
   schemas:
-    UnitListResponse:
+    VesselVisit:
       type: object
       properties:
-        units:
-          type: array
-          items:
-            $ref: '#/components/schemas/Unit'
-        totalCount:
+        visitId:
+          type: string
+        vesselName:
+          type: string
+        vesselLloyd:
+          type: string
+          description: Lloyd's Register vessel number
+        mmsi:
+          type: string
+        imo:
+          type: string
+        lineOperator:
+          type: string
+        service:
+          type: string
+          description: Shipping service / string code
+        berth:
+          type: string
+        status:
+          type: string
+          enum:
+          - INBOUND
+          - WORKING
+          - COMPLETE
+          - DEPARTED
+        eta:
+          type: string
+          format: date-time
+        ata:
+          type: string
+          format: date-time
+        etd:
+          type: string
+          format: date-time
+        atd:
+          type: string
+          format: date-time
+        plannedMoves:
           type: integer
-        limit:
+        completedMoves:
           type: integer
-        offset:
+        remainingMoves:
           type: integer
-    VesselVisitListResponse:
+    ErrorResponse:
       type: object
       properties:
-        vesselVisits:
-          type: array
-          items:
-            $ref: '#/components/schemas/VesselVisit'
-        totalCount:
-          type: integer
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        requestId:
+          type: string
     Unit:
       type: object
       description: A container or cargo unit in the terminal
@@ -204,6 +237,19 @@ components:
         outGateDate:
           type: string
           format: date-time
+    UnitListResponse:
+      type: object
+      properties:
+        units:
+          type: array
+          items:
+            $ref: '#/components/schemas/Unit'
+        totalCount:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
     YardPosition:
       type: object
       properties:
@@ -227,6 +273,15 @@ components:
         slotName:
           type: string
           description: Full slot identifier (e.g., A01-01-01)
+    VesselVisitListResponse:
+      type: object
+      properties:
+        vesselVisits:
+          type: array
+          items:
+            $ref: '#/components/schemas/VesselVisit'
+        totalCount:
+          type: integer
     Hold:
       type: object
       properties:
@@ -251,61 +306,6 @@ components:
           format: date-time
         reason:
           type: string
-    ErrorResponse:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorMessage:
-          type: string
-        requestId:
-          type: string
-    VesselVisit:
-      type: object
-      properties:
-        visitId:
-          type: string
-        vesselName:
-          type: string
-        vesselLloyd:
-          type: string
-          description: Lloyd's Register vessel number
-        mmsi:
-          type: string
-        imo:
-          type: string
-        lineOperator:
-          type: string
-        service:
-          type: string
-          description: Shipping service / string code
-        berth:
-          type: string
-        status:
-          type: string
-          enum:
-          - INBOUND
-          - WORKING
-          - COMPLETE
-          - DEPARTED
-        eta:
-          type: string
-          format: date-time
-        ata:
-          type: string
-          format: date-time
-        etd:
-          type: string
-          format: date-time
-        atd:
-          type: string
-          format: date-time
-        plannedMoves:
-          type: integer
-        completedMoves:
-          type: integer
-        remainingMoves:
-          type: integer
   responses:
     NotFound:
       description: Resource not found

@@ -1,11 +1,7 @@
 {
   "provider": "navis",
   "sources": [
-    "navis-gate-api-openapi.yml",
-    "navis-holds-api-openapi.yml",
-    "navis-operations-api-openapi.yml",
-    "navis-units-api-openapi.yml",
-    "navis-vessel-visits-api-openapi.yml"
+    "_original/navis-n4-openapi.yml"
   ],
   "outputs": [
     "navis-gate-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "navis-n4-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "navis-gate-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "navis-holds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "navis-operations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "navis-units-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "navis-vessel-visits-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
