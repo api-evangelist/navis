@@ -135,6 +135,43 @@ components:
           type: string
         requestId:
           type: string
+    UnitListResponse:
+      type: object
+      properties:
+        units:
+          type: array
+          items:
+            $ref: '#/components/schemas/Unit'
+        totalCount:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    Hold:
+      type: object
+      properties:
+        holdId:
+          type: string
+        holdType:
+          type: string
+          description: Type of hold (CUSTOMS, LINE, PORT, FREIGHT, etc.)
+        holdStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - RELEASED
+          - EXPIRED
+        appliedBy:
+          type: string
+        appliedDate:
+          type: string
+          format: date-time
+        releasedDate:
+          type: string
+          format: date-time
+        reason:
+          type: string
     Unit:
       type: object
       description: A container or cargo unit in the terminal
@@ -195,19 +232,6 @@ components:
         outGateDate:
           type: string
           format: date-time
-    UnitListResponse:
-      type: object
-      properties:
-        units:
-          type: array
-          items:
-            $ref: '#/components/schemas/Unit'
-        totalCount:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
     YardPosition:
       type: object
       properties:
@@ -231,39 +255,15 @@ components:
         slotName:
           type: string
           description: Full slot identifier (e.g., A01-01-01)
-    Hold:
-      type: object
-      properties:
-        holdId:
-          type: string
-        holdType:
-          type: string
-          description: Type of hold (CUSTOMS, LINE, PORT, FREIGHT, etc.)
-        holdStatus:
-          type: string
-          enum:
-          - ACTIVE
-          - RELEASED
-          - EXPIRED
-        appliedBy:
-          type: string
-        appliedDate:
-          type: string
-          format: date-time
-        releasedDate:
-          type: string
-          format: date-time
-        reason:
-          type: string
   responses:
-    Unauthorized:
-      description: Authentication required
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:

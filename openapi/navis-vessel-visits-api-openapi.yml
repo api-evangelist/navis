@@ -122,6 +122,28 @@ paths:
                 $ref: '#/components/schemas/UnitListResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        requestId:
+          type: string
+    UnitListResponse:
+      type: object
+      properties:
+        units:
+          type: array
+          items:
+            $ref: '#/components/schemas/Unit'
+        totalCount:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
     VesselVisit:
       type: object
       properties:
@@ -168,14 +190,29 @@ components:
           type: integer
         remainingMoves:
           type: integer
-    ErrorResponse:
+    Hold:
       type: object
       properties:
-        errorCode:
+        holdId:
           type: string
-        errorMessage:
+        holdType:
           type: string
-        requestId:
+          description: Type of hold (CUSTOMS, LINE, PORT, FREIGHT, etc.)
+        holdStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - RELEASED
+          - EXPIRED
+        appliedBy:
+          type: string
+        appliedDate:
+          type: string
+          format: date-time
+        releasedDate:
+          type: string
+          format: date-time
+        reason:
           type: string
     Unit:
       type: object
@@ -237,19 +274,6 @@ components:
         outGateDate:
           type: string
           format: date-time
-    UnitListResponse:
-      type: object
-      properties:
-        units:
-          type: array
-          items:
-            $ref: '#/components/schemas/Unit'
-        totalCount:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
     YardPosition:
       type: object
       properties:
@@ -282,30 +306,6 @@ components:
             $ref: '#/components/schemas/VesselVisit'
         totalCount:
           type: integer
-    Hold:
-      type: object
-      properties:
-        holdId:
-          type: string
-        holdType:
-          type: string
-          description: Type of hold (CUSTOMS, LINE, PORT, FREIGHT, etc.)
-        holdStatus:
-          type: string
-          enum:
-          - ACTIVE
-          - RELEASED
-          - EXPIRED
-        appliedBy:
-          type: string
-        appliedDate:
-          type: string
-          format: date-time
-        releasedDate:
-          type: string
-          format: date-time
-        reason:
-          type: string
   responses:
     NotFound:
       description: Resource not found

@@ -70,6 +70,15 @@ paths:
                 $ref: '#/components/schemas/GateTransactionListResponse'
 components:
   schemas:
+    GateTransactionListResponse:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/GateTransaction'
+        totalCount:
+          type: integer
     GateTransaction:
       type: object
       properties:
@@ -96,15 +105,6 @@ components:
           type: string
         lineOperator:
           type: string
-    GateTransactionListResponse:
-      type: object
-      properties:
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/GateTransaction'
-        totalCount:
-          type: integer
   securitySchemes:
     BasicAuth:
       type: http
