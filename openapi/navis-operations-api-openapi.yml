@@ -51,6 +51,15 @@ paths:
                 $ref: '#/components/schemas/WorkQueueListResponse'
 components:
   schemas:
+    WorkQueueListResponse:
+      type: object
+      properties:
+        queues:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkQueue'
+        totalCount:
+          type: integer
     WorkQueue:
       type: object
       properties:
@@ -83,15 +92,6 @@ components:
         assignedTo:
           type: string
           description: Equipment ID assigned to the move
-    WorkQueueListResponse:
-      type: object
-      properties:
-        queues:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkQueue'
-        totalCount:
-          type: integer
   securitySchemes:
     BasicAuth:
       type: http
