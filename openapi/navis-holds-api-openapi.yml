@@ -52,15 +52,6 @@ paths:
                 $ref: '#/components/schemas/HoldListResponse'
 components:
   schemas:
-    HoldListResponse:
-      type: object
-      properties:
-        holds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Hold'
-        totalCount:
-          type: integer
     Hold:
       type: object
       properties:
@@ -85,6 +76,15 @@ components:
           format: date-time
         reason:
           type: string
+    HoldListResponse:
+      type: object
+      properties:
+        holds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hold'
+        totalCount:
+          type: integer
   securitySchemes:
     BasicAuth:
       type: http
