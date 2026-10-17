@@ -125,6 +125,19 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     Unit:
       type: object
@@ -186,6 +199,42 @@ components:
         outGateDate:
           type: string
           format: date-time
+    UnitListResponse:
+      type: object
+      properties:
+        units:
+          type: array
+          items:
+            $ref: '#/components/schemas/Unit'
+        totalCount:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    YardPosition:
+      type: object
+      properties:
+        locType:
+          type: string
+          enum:
+          - YARD
+          - VESSEL
+          - TRUCK
+          - RAIL
+          - DOCK
+          - VESSEL_BUFFER
+        blockName:
+          type: string
+        bayNbr:
+          type: integer
+        rowNbr:
+          type: integer
+        tierNbr:
+          type: integer
+        slotName:
+          type: string
+          description: Full slot identifier (e.g., A01-01-01)
     ErrorResponse:
       type: object
       properties:
@@ -219,55 +268,6 @@ components:
           format: date-time
         reason:
           type: string
-    YardPosition:
-      type: object
-      properties:
-        locType:
-          type: string
-          enum:
-          - YARD
-          - VESSEL
-          - TRUCK
-          - RAIL
-          - DOCK
-          - VESSEL_BUFFER
-        blockName:
-          type: string
-        bayNbr:
-          type: integer
-        rowNbr:
-          type: integer
-        tierNbr:
-          type: integer
-        slotName:
-          type: string
-          description: Full slot identifier (e.g., A01-01-01)
-    UnitListResponse:
-      type: object
-      properties:
-        units:
-          type: array
-          items:
-            $ref: '#/components/schemas/Unit'
-        totalCount:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     BasicAuth:
       type: http

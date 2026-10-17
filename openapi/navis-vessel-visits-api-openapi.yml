@@ -122,6 +122,15 @@ paths:
                 $ref: '#/components/schemas/UnitListResponse'
 components:
   schemas:
+    VesselVisitListResponse:
+      type: object
+      properties:
+        vesselVisits:
+          type: array
+          items:
+            $ref: '#/components/schemas/VesselVisit'
+        totalCount:
+          type: integer
     Unit:
       type: object
       description: A container or cargo unit in the terminal
@@ -182,6 +191,19 @@ components:
         outGateDate:
           type: string
           format: date-time
+    UnitListResponse:
+      type: object
+      properties:
+        units:
+          type: array
+          items:
+            $ref: '#/components/schemas/Unit'
+        totalCount:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
     ErrorResponse:
       type: object
       properties:
@@ -191,30 +213,29 @@ components:
           type: string
         requestId:
           type: string
-    Hold:
+    YardPosition:
       type: object
       properties:
-        holdId:
-          type: string
-        holdType:
-          type: string
-          description: Type of hold (CUSTOMS, LINE, PORT, FREIGHT, etc.)
-        holdStatus:
+        locType:
           type: string
           enum:
-          - ACTIVE
-          - RELEASED
-          - EXPIRED
-        appliedBy:
+          - YARD
+          - VESSEL
+          - TRUCK
+          - RAIL
+          - DOCK
+          - VESSEL_BUFFER
+        blockName:
           type: string
-        appliedDate:
+        bayNbr:
+          type: integer
+        rowNbr:
+          type: integer
+        tierNbr:
+          type: integer
+        slotName:
           type: string
-          format: date-time
-        releasedDate:
-          type: string
-          format: date-time
-        reason:
-          type: string
+          description: Full slot identifier (e.g., A01-01-01)
     VesselVisit:
       type: object
       properties:
@@ -261,51 +282,30 @@ components:
           type: integer
         remainingMoves:
           type: integer
-    YardPosition:
+    Hold:
       type: object
       properties:
-        locType:
+        holdId:
+          type: string
+        holdType:
+          type: string
+          description: Type of hold (CUSTOMS, LINE, PORT, FREIGHT, etc.)
+        holdStatus:
           type: string
           enum:
-          - YARD
-          - VESSEL
-          - TRUCK
-          - RAIL
-          - DOCK
-          - VESSEL_BUFFER
-        blockName:
+          - ACTIVE
+          - RELEASED
+          - EXPIRED
+        appliedBy:
           type: string
-        bayNbr:
-          type: integer
-        rowNbr:
-          type: integer
-        tierNbr:
-          type: integer
-        slotName:
+        appliedDate:
           type: string
-          description: Full slot identifier (e.g., A01-01-01)
-    UnitListResponse:
-      type: object
-      properties:
-        units:
-          type: array
-          items:
-            $ref: '#/components/schemas/Unit'
-        totalCount:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
-    VesselVisitListResponse:
-      type: object
-      properties:
-        vesselVisits:
-          type: array
-          items:
-            $ref: '#/components/schemas/VesselVisit'
-        totalCount:
-          type: integer
+          format: date-time
+        releasedDate:
+          type: string
+          format: date-time
+        reason:
+          type: string
   responses:
     NotFound:
       description: Resource not found
